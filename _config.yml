@@ -1,18 +1,18 @@
 # Site settings
 title: "Matthew Santos"
-description: "Matthew Santos Profile"
+description: "Personal Website/Portfolio"
 repository: "Matt-Santos/matt-santos.github.io"
 
+# Jekyll Build settings
+timezone: America/Toronto
+theme: jekyll-theme-minimal
+
+# Varriables
 author:
   name: "Matthew Santos"
+  location: "Milton, Ontario"
   email: "matthewsantos@ieee.org"
   location: "Toronto, Ontario"
   github: "https://github.com/matt-santos"
   linkedin: "https://linkedin.com/in/matthewjsantos"
   orcid: "https://orcid.org/0009-006-1653-3882"
-  googlescholar: 
-  researchgate: 
-
-# Build settings
-timezone: America/Toronto
-theme: jekyll-theme-minimal

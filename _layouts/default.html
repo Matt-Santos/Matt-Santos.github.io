@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<title>{{ page.title }}</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="icon" type="image/x-icon" href="/assets/images/favicon.ico">
+	<link rel="stylesheet" href="/assets/css/style.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+	
+<body>
+	<!-- Navbar -->
+	<div class="w3-top">
+		<div class="w3-bar" id="myNavbar">
+			<a class="w3-bar-item w3-button w3-hover-black w3-hide-medium w3-hide-large w3-right" href="javascript:void(0);" onclick="toggleFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
+			<a href="/index.html#home" class="w3-bar-item w3-button w3-hide-small">HOME</a>
+			<a href="/index.html#about" class="w3-bar-item w3-button w3-hide-small"><i class="fa-solid fa-circle-user"></i> ABOUT</a>
+			<a href="/index.html#cv" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-suitcase"></i> CV</a>
+			<a href="projects.html" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-wrench"></i> PROJECTS</a>
+			<a href="extracurricular.html" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-rocket"></i> EXTRACURRICULAR</a>
+			<a href="/index.html#contact" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-envelope"></i> CONTACT</a>
+		</div>
+		<!-- Navbar on small screens -->
+		<div id="navDemo" class="w3-bar-block w3-dark-grey w3-hide w3-hide-large w3-hide-medium">
+			<a href="/index.html#home" class="w3-bar-item w3-button">HOME</a>
+			<a href="/index.html#about" class="w3-bar-item w3-button" onclick="toggleFunction()">ABOUT</a>
+			<a href="/index.html#cv" class="w3-bar-item w3-button" onclick="toggleFunction()">CV</a>
+			<a href="projects.html" class="w3-bar-item w3-button" onclick="toggleFunction()">PROJECTS</a>
+			<a href="extracurricular.html" class="w3-bar-item w3-button" onclick="toggleFunction()">EXTRACURRICULAR</a>
+			<a href="/index.html#contact" class="w3-bar-item w3-button" onclick="toggleFunction()">CONTACT</a>
+		</div>
+	</div>
+	
+	<!-- Main Background -->
+	{% include parallax_bg.html
+		label={{ page.title | upcase }}
+		image={{ page.main_background }}
+		height={{ page.main_background_height }}
+	%}
+	
+	{{ content }}
+	
+	<!-- Footer -->
+	<footer class="w3-center w3-black w3-padding-64">
+		<a href="#home" class="w3-button w3-light-grey"><i class="fa fa-arrow-up w3-margin-right"></i>To the top</a>
+		<div class="w3-xlarge w3-section">
+			<a href="{{site.author.email}}"><i class="fa-solid fa-envelope w3-hover-opacity"></i></a>
+			<a href="{{site.author.linkedin}}"><i class="fa-brands fa-linkedin w3-hover-opacity"></i></a>
+			<a href="{{site.author.orcid}}"><i class="fa-brands fa-orcid w3-hover-opacity"></i></a>
+			<a href="{{site.author.github}}"><i class="fa-brands fa-github w3-hover-opacity"></i></a>
+		</div>
+	</footer>
+	
+	<script>
+	// Modal Image Gallery
+	function onClick(element) {
+		document.getElementById("img01").src = element.src;
+		document.getElementById("modal01").style.display = "block";
+		var captionText = document.getElementById("caption");
+		captionText.innerHTML = element.alt;
+	}
+	
+	// Change style of navbar on scroll
+	window.onscroll = function() {myFunction()};
+	function myFunction() {
+		var navbar = document.getElementById("myNavbar");
+		if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+			navbar.className = "w3-bar" + " w3-card" + " w3-animate-top" + " w3-dark-grey";
+		}
+		else {
+			navbar.className = navbar.className.replace(" w3-card w3-animate-top w3-dark-grey", "");
+		}
+	}
+	
+	// Used to toggle the menu on small screens when clicking on the menu button
+	function toggleFunction() {
+		var x = document.getElementById("navDemo");
+		if (x.className.indexOf("w3-show") == -1) {
+			x.className += " w3-show";
+		}
+		else {
+			x.className = x.className.replace(" w3-show", "");
+		}
+	}
+	</script>
+</body>
+</html>
