@@ -1,7 +1,7 @@
-<div class="parallax w3-display-container w3-opacity-min" style="background-image:url('{{ include.image }}');{% if include.height %}min-height:{{ include.height }};{% endif %}" id="home">
-	{% if include.label %}
+<div class="parallax w3-display-container w3-opacity-min" style="background-image:url('{{ include.image_url }}');min-height:{{ include.image_height | default: 400px }};" id="home">
+	{% if include.image_label %}
 	<div class="w3-display-middle" style="white-space:nowrap;">
-		<span class="w3-center w3-padding-large w3-black w3-xlarge w3-wide w3-animate-opacity">{{ include.label }}</span>
+		<span class="w3-center w3-padding-large w3-black w3-xlarge w3-wide w3-animate-opacity">{{ include.image_label }}</span>
 	</div>
 	{% endif %}
 </div>

@@ -1,8 +1,8 @@
 ---
 title: Matthew Santos
 layout: default
-main_background: /assets/images/Misc/background1.jpg
-main_background_height: 112%
+bg: /assets/images/Misc/background1.jpg
+bg_height: 112%
 ---
 
 <!-- About Me Section -->
@@ -46,7 +46,7 @@ main_background_height: 112%
 </div>
 
 <!-- CV Image (done)-->
-{% include parallax_bg.html image="/assets/images/Misc/background2.jpg" %}
+{% include parallax_bg.html image_url="/assets/images/Misc/background2.jpg" %}
 
 <!-- CV Section (done)-->
 <div class="w3-content w3-container w3-padding-64" id="cv">
@@ -229,7 +229,7 @@ main_background_height: 112%
 </div>
 
 <!-- Contact Image (done)-->
-{% include parallax_bg.html image="/assets/images/Misc/background3.jpg" %}
+{% include parallax_bg.html image_url="/assets/images/Misc/background3.jpg" %}
 
 <!-- Contact Section (done)-->
 <div class="w3-content w3-container w3-padding-64" id="contact">
@@ -241,10 +241,10 @@ main_background_height: 112%
     <div class="w3-col m8 w3-panel">
       <div class="w3-large w3-margin-bottom">
         <i class="fa fa-location-dot fa-fw w3-xlarge w3-margin-right"></i> {{site.author.location}}<br>
-		<i class="fa fa-envelope fa-fw w3-xlarge w3-margin-right"></i> <a href="{{site.author.email}}">Email Me</a><br>
-        <i class="fa-brands fa-linkedin fa-fw w3-xlarge w3-margin-right"></i> <a href="{{site.author.linkedin}}">LinkedIn</a><br>
-		<i class="fa-brands fa-orcid fa-fw w3-xlarge w3-margin-right"></i> <a href="{{site.author.orcid}}">ORCID</a><br>
-		<i class="fa-brands fa-github fa-fw w3-xlarge w3-margin-right"></i> <a href="{{site.author.github}}">Github</a>
+		<i class="fa fa-envelope fa-fw w3-xlarge w3-margin-right"></i> <a href={{site.author.email}}>Email Me</a><br>
+        <i class="fa-brands fa-linkedin fa-fw w3-xlarge w3-margin-right"></i> <a href={{site.author.linkedin}}>LinkedIn</a><br>
+		<i class="fa-brands fa-orcid fa-fw w3-xlarge w3-margin-right"></i> <a href={{site.author.orcid}}>ORCID</a><br>
+		<i class="fa-brands fa-github fa-fw w3-xlarge w3-margin-right"></i> <a href={{site.author.github}}>Github</a>
 	  </div>
     </div>
   </div>

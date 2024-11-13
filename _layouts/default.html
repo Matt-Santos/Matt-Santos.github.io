@@ -33,10 +33,13 @@
 	</div>
 	
 	<!-- Main Background -->
+	{% capture bg_label %}{{ page.title | upcase }}{% endcapture %}
+	{% capture bg_url %}{{ page.bg }}{% endcapture %}
+	{% capture bg_height %}{{ page.bg_height }}{% endcapture %}
 	{% include parallax_bg.html
-		label={{ page.title | upcase }}
-		image={{ page.main_background }}
-		height={{ page.main_background_height }}
+		image_label=bg_label
+		image_url=bg_url
+		image_height=bg_height
 	%}
 	
 	{{ content }}
@@ -45,10 +48,10 @@
 	<footer class="w3-center w3-black w3-padding-64">
 		<a href="#home" class="w3-button w3-light-grey"><i class="fa fa-arrow-up w3-margin-right"></i>To the top</a>
 		<div class="w3-xlarge w3-section">
-			<a href="{{site.author.email}}"><i class="fa-solid fa-envelope w3-hover-opacity"></i></a>
-			<a href="{{site.author.linkedin}}"><i class="fa-brands fa-linkedin w3-hover-opacity"></i></a>
-			<a href="{{site.author.orcid}}"><i class="fa-brands fa-orcid w3-hover-opacity"></i></a>
-			<a href="{{site.author.github}}"><i class="fa-brands fa-github w3-hover-opacity"></i></a>
+			<a href={{site.author.email}}><i class="fa-solid fa-envelope w3-hover-opacity"></i></a>
+			<a href={{site.author.linkedin}}><i class="fa-brands fa-linkedin w3-hover-opacity"></i></a>
+			<a href={{site.author.orcid}}><i class="fa-brands fa-orcid w3-hover-opacity"></i></a>
+			<a href={{site.author.github}}><i class="fa-brands fa-github w3-hover-opacity"></i></a>
 		</div>
 	</footer>
 	
