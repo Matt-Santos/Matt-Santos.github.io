@@ -1,0 +1,56 @@
+<!-- Determine Status -->
+{% if project.isPrivate == true %}
+	{% assign status = "PRIVATE" %}
+	{% assign status_color = "w3-red" %}
+{% elsif project.isArchived == true %}
+	{% assign status = "Completed" %}
+	{% assign status_color = "w3-green" %}
+{% elsif project.isTemplate == true %}
+	{% assign status = "Template" %}
+	{% assign status_color = "w3-blue" %}
+{% elsif project.isFork == true %}
+	{% assign status = "Forked" %}
+	{% assign status_color = "w3-cyan" %}
+{% else %}
+	{% assign status = "In Progress" %}
+	{% assign status_color = "w3-yellow" %}
+{% endif %}
+
+<a href="https://Matt-Santos.github.io/{{ include.data.name }}/">
+	<div class="w3-card w3-content w3-container w3-padding w3-hover-shadow w3-hover-sand w3-round-xlarge " style="height:400px;position:relative;overflow:auto">
+		<div class="w3-third">
+			<img src="https://raw.githubusercontent.com/Matt-Santos/{{ include.data.name }}/refs/heads/main/.github/project.jpg" class="w3-round-xlarge w3-image">
+			<div class="w3-quarter w3-center">
+				<div class="fa-solid fa-star"><span> {{ include.data.stargazerCount }}</span></div><br>
+				<div class="fa-solid fa-eye"><span> {{ include.data.watchers.totalCount }}</span></div><br>
+				<div class="fa-solid fa-code-fork"><span> {{ include.data.forkCount }}</span></div>
+			</div>
+			<div class="w3-threequarter w3-center">
+				Updated: {{ include.data.updatedAt }}<br>
+				Created: {{ include.data.createdAt }}<br>
+				Topics: {{ include.data.repositoryTopics }}
+			</div>
+		</div>
+		<div class="w3-twothird">
+			<h3>{{ include.data.name }}</h3>
+			<h6>{{ include.data.description }}</h6>
+			<div class="w3-display-topright w3-round-xlarge {{ status_color }}" style="right:5px;top:8px">&nbsp;&nbsp; {{ status }} &nbsp;&nbsp;</div>
+		</div>
+	</div>
+</a>
+
+<!-- Unused 
+languages:
+    - size: 33436
+      node:
+        name: HTML
+    - size: 23438
+      node:
+        name: CSS
+    - size: 73
+      node:
+        name: Ruby
+  primaryLanguage:
+    name: HTML
+
+-->

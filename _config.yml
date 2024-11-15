@@ -1,18 +1,22 @@
-# Site settings
+# _config.yml
+
 title: "Matthew Santos"
 description: "Personal Website/Portfolio"
 repository: "Matt-Santos/matt-santos.github.io"
 
 # Jekyll Build settings
 timezone: America/Toronto
-theme: jekyll-theme-minimal
+theme: null #jekyll-theme-minimal
 
 # Varriables
 author:
-  name: "Matthew Santos"
-  location: "Milton, Ontario"
-  email: "mailto:matthewsantos@ieee.org"
-  location: "Toronto, Ontario"
-  github: "https://github.com/matt-santos"
-  linkedin: "https://linkedin.com/in/matthewjsantos"
-  orcid: "https://orcid.org/0009-006-1653-3882"
+ name: "Matthew Santos"
+ location: "Milton, Ontario"
+ email: "mailto:matthewsantos@ieee.org"
+ location: "Toronto, Ontario"
+ github: "https://github.com/matt-santos"
+ linkedin: "https://linkedin.com/in/matthewjsantos"
+ orcid: "https://orcid.org/0009-006-1653-3882"
+
+# Auto Generated Project Listing (Via Github Actions)
+projects:
