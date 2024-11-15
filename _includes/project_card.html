@@ -12,8 +12,8 @@
 	{% assign status = "Forked" %}
 	{% assign status_color = "w3-cyan" %}
 {% else %}
-	{% assign status = "In Progress" %}
-	{% assign status_color = "w3-yellow" %}
+	{% assign status = "Active" %}
+	{% assign status_color = "w3-green" %}
 {% endif %}
 
 <a href="https://Matt-Santos.github.io/{{ include.data.name }}/">
@@ -26,31 +26,19 @@
 				<div class="fa-solid fa-code-fork"><span> {{ include.data.forkCount }}</span></div>
 			</div>
 			<div class="w3-threequarter w3-center">
-				Updated: {{ include.data.updatedAt }}<br>
-				Created: {{ include.data.createdAt }}<br>
-				Topics: {{ include.data.repositoryTopics }}
+				Updated: {{ include.data.updatedAt | date: "%Y-%m-%d %H:%M" }}<br>
+				Created: {{ include.data.createdAt | date: "%Y-%m-%d %H:%M" }}<br>
+				Language: {{ include.data.primaryLanguage.name }}
+				<!--Topics: {% for topics in include.data.repositoryTopics %}{{topics.name}}{% if forloop.last != true %},{% endif %}{% endfor %}-->
 			</div>
 		</div>
 		<div class="w3-twothird">
+			<!-- Project README.md -->
+			{% capture readme_include %}{% include Matt-Santos/{{ include.data.name }}/README.md %}{% endcapture %}
+			{{ readme_include | markdownify %}}
 			<h3>{{ include.data.name }}</h3>
 			<h6>{{ include.data.description }}</h6>
 			<div class="w3-display-topright w3-round-xlarge {{ status_color }}" style="right:5px;top:8px">&nbsp;&nbsp; {{ status }} &nbsp;&nbsp;</div>
 		</div>
 	</div>
 </a>
-
-<!-- Unused 
-languages:
-    - size: 33436
-      node:
-        name: HTML
-    - size: 23438
-      node:
-        name: CSS
-    - size: 73
-      node:
-        name: Ruby
-  primaryLanguage:
-    name: HTML
-
--->

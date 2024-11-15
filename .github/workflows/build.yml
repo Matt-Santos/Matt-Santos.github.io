@@ -31,12 +31,23 @@ jobs:
                 cmd: yq -Poy repoList.json >> _config.yml
           # - name: Print Config
             # run: cat _config.yml
+          - name: Get Project Readmes
+            run: |
+                gh repo list -L 200 $OWNER > repos
+                mkdir _includes/$OWNER
+                awk '{print $1}' repos | while read line ; do \
+                mkdir _includes/$line ; \
+                curl -o _includes/$line/README.md https://raw.githubusercontent.com/$line/refs/heads/main/README.md ; \
+                done
+            env:
+                GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+                OWNER: ${{ github.repository_owner }}
           - name: Setup Ruby
             uses: ruby/setup-ruby@v1
             with:
-              ruby-version: '3.3' # Not needed with a .ruby-version file
-              bundler-cache: true # runs 'bundle install' and caches installed gems automatically
-              cache-version: 0 # Increment this number if you need to re-download cached gems
+              ruby-version: '3.3'
+              bundler-cache: true
+              cache-version: 0
           - name: Setup Pages
             id: pages
             uses: actions/configure-pages@v5
