@@ -1,0 +1,53 @@
+---
+title: Extracurricular
+layout: default
+bg: /assets/images/Misc/background3.jpg
+---
+
+<!-- Extracurricular Section -->
+<div class="w3-content w3-container w3-padding-64" id="extracurricular">
+	<h2 class="w3-center">EXTRACURRICULAR</h2>
+	<div class="w3-row w3-center w3-dark-grey w3-padding-16">
+		<div class="w3-third w3-section">
+			<a href="#robotics"><span class="w3-xlarge fa-solid fa-robot"></span><br>Robotics</a>
+		</div>
+		<div class="w3-third w3-section">
+			<a href="#volunteer"><span class="w3-xlarge fa-solid fa-handshake-angle"></span><br>Volunteer Work</a>
+		</div>
+		<div class="w3-third w3-section">
+			<a href="#recreation"><span class="w3-xlarge fa fa-person-skiing"></span><br>Recreation</a>
+		</div>
+	</div>
+
+	<h3 id="robotics">Robotics</h3>
+		{% for image in site.static_files %}
+			{% if image.path contains "assets/images/extracurricular/robotics" %}
+				{% capture file_url %}{{ site.baseurl }}{{ image.path }}{% endcapture %}
+				{% include parallax_bg.html
+					image_url=file_url
+					image_height=400px
+				%}
+			{% endif %}
+		{% endfor %}
+	<h3 id="volunteer">Volunteer Work</h3>
+		{% for image in site.static_files %}
+			{% if image.path contains "assets/images/extracurricular/volunteer" %}
+				{% capture file_url %}{{ site.baseurl }}{{ image.path }}{% endcapture %}
+				{% include parallax_bg.html
+					image_url=file_url
+					image_height=400px
+				%}
+			{% endif %}
+		{% endfor %}
+	<h3 id="recreation">Recreation</h3>
+		{% for image in site.static_files %}
+			{% if image.path contains "assets/images/extracurricular/recreation" %}
+				{% capture file_url %}{{ site.baseurl }}{{ image.path }}{% endcapture %}
+				{% include parallax_bg.html
+					image_url=file_url
+					image_height=400px
+				%}
+			{% endif %}
+		{% endfor %}
+	
+</div>

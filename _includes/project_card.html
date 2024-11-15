@@ -28,7 +28,7 @@
 			<div class="w3-threequarter w3-center">
 				Updated: {{ include.data.updatedAt | date: "%Y-%m-%d %H:%M" }}<br>
 				Created: {{ include.data.createdAt | date: "%Y-%m-%d %H:%M" }}<br>
-				Language: {{ include.data.primaryLanguage.name }}
+				Main Language: {{ include.data.primaryLanguage.name }}
 				<!--Topics: {% for topics in include.data.repositoryTopics %}{{topics.name}}{% if forloop.last != true %},{% endif %}{% endfor %}-->
 			</div>
 		</div>
@@ -36,8 +36,6 @@
 			<!-- Project README.md -->
 			{% capture readme_include %}{% include Matt-Santos/{{ include.data.name }}/README.md %}{% endcapture %}
 			{{ readme_include | markdownify %}}
-			<h3>{{ include.data.name }}</h3>
-			<h6>{{ include.data.description }}</h6>
 			<div class="w3-display-topright w3-round-xlarge {{ status_color }}" style="right:5px;top:8px">&nbsp;&nbsp; {{ status }} &nbsp;&nbsp;</div>
 		</div>
 	</div>
