@@ -28,12 +28,11 @@ bg: /assets/images/Misc/background3.jpg
 	<h3 id="research">Research</h3>
 	<hr style="border-top:5px solid #eee">
 	{% for project in site.projects %}
-		{% if project.repositoryTopics | find: "name","research" %}
-			{% echo project.repositoryTopics %}
-			{% echo project.repositoryTopics | find: "name","research" %}
-			{% echo if project.repositoryTopics | find: "name","research" %}
-			{% include project_card.html data=project %}
-		{% endif %}
+		{% for topics in project.repositoryTopics %}
+			{% if topics.name contains "research" %}
+				{% include project_card.html data=project %}
+			{% endif %}
+		{% endfor %}
 	{% endfor %}
 	
 	<!-- Electronics Projects -->
@@ -41,9 +40,11 @@ bg: /assets/images/Misc/background3.jpg
 	<h3 id="electronics">Electronics</h3>
 	<hr style="border-top:5px solid #eee">
 	{% for project in site.projects %}
-		{% if project.repositoryTopics | find: "name","electronics" %}
-			{% include project_card.html data=project %}
-		{% endif %}
+		{% for topics in project.repositoryTopics %}
+			{% if topics.name contains "electronics" %}
+				{% include project_card.html data=project %}
+			{% endif %}
+		{% endfor %}
 	{% endfor %}
 	
 	<!-- Restoration Projects -->
@@ -51,9 +52,11 @@ bg: /assets/images/Misc/background3.jpg
 	<h3 id="restoration">Restoration</h3>
 	<hr style="border-top:5px solid #eee">
 	{% for project in site.projects %}
-		{% if project.repositoryTopics | find: "name","restoration" %}
-			{% include project_card.html data=project %}
-		{% endif %}
+		{% for topics in project.repositoryTopics %}
+			{% if topics.name contains "restoration" %}
+				{% include project_card.html data=project %}
+			{% endif %}
+		{% endfor %}
 	{% endfor %}
 	
 	<!-- Programing Projects -->
@@ -61,9 +64,11 @@ bg: /assets/images/Misc/background3.jpg
 	<h3 id="programing">Programing</h3>
 	<hr style="border-top:5px solid #eee">
 	{% for project in site.projects %}
-		{% if project.repositoryTopics | find: "name","programming" | contains: "programming" %}
-			{% include project_card.html data=project %}
-		{% endif %}
+		{% for topics in project.repositoryTopics %}
+			{% if topics.name contains "programming" %}
+				{% include project_card.html data=project %}
+			{% endif %}
+		{% endfor %}
 	{% endfor %}
 	
 </div>
