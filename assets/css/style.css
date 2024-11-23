@@ -83,7 +83,12 @@ sup{
 }
 code,kbd,pre,samp{
 	font-family:monospace,monospace;
-	font-size:1em;
+	padding: 1em;
+	margin: 15px 0;
+	display: block;
+	font-size: 15px;
+	background-color:rgb(235, 235, 235);
+	border-left: 4px solid #4caf50;
 }
 a{
 	background-color:transparent;

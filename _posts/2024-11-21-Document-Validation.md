@@ -13,13 +13,15 @@ It is often nessesary to validate the authenticity and integrity of digital docu
 To process my digital signatures OpenPGP support is required. Several software tools implement this standard but I recommend using [GPG (GNU Privacy Guard)](https://gnupg.org/), which is a widely trusted implementation. GPG is available for all major operating systems and in some cases, it may even be pre-installed by default. While GPG is primarily a command-line tool, there are also various [graphical user interfaces (GUIs)](https://www.gnupg.org/software/frontends.html) available should you desire.
 
 To check if GPG is already installed on your system, open your command line and enter:
+
 ```gpg2 -v```
+
 If the command returns a version code then GPG is already present, otherwise install using the appropriate method for your operating system.
 
-- ArchLinux: `sudo pacman -S gnupg`
-- Ubuntu/Debian: `sudo apt install gnupg`
-- Fedora/Redhat/CentOS: `sudo dnf install gnupg`
-- macOS: `brew install gnupg`
+- ArchLinux: (sudo pacman -S gnupg)
+- Ubuntu/Debian: (sudo apt install gnupg)
+- Fedora/Redhat/CentOS: (sudo dnf install gnupg)
+- macOS: (brew install gnupg)
 - Windows: [Gpg4win Installer](https://gpg4win.org/download.html)
 - [Prebuilt Binaries](https://gnupg.org/download/index.html#binary)
 - [Source Code](https://gnupg.org/ftp/gcrypt/gnupg/)
@@ -33,12 +35,15 @@ My keyfile can be found in two places:
 - The MIT Public Keyserver: [pgp.mit.edu](https://pgp.mit.edu/pks/lookup?op=get&search=0x8CAD5AA683A8AC5E)
 
 Importing a downloaded keyfile is done using gpg with the *--import* arguement.
+
 ```gpg2 --import msantos_public_key.asc```
 
 Alternatively gpg can automatically pull from keyservers by specifiying the server and keyID.
+
 ```gpg2 --keyserver pgp.mit.edu --receive-key 83A8AC5E```
 
 Upon completion a key fingerprint will be output. This is used to verify you have the correct key. My key's fingerprint should exactly match the following:
+
 ```85CB31EF208B4C9E67AAC0CD8CAD5AA683A8AC5E``` 
 
 ## Identifying Signed Documents
@@ -54,10 +59,15 @@ As evident from the name, detached signatures are seperate files that accompany 
 ## Validating Signatures
 
 After importing the keyfile signiture verification is performed through the *--verify* arguement followed by the target file.
+
 ```gpg2 --verify filename```
+
 To also extract the origional file from a binary signature include the *--decrypt* arguement.
+
 ```gpg2 --verify --decrypt filename```
+
 For detached signatures simply include the associated *.sig* in the command
+
 ```gpg2 --verify filename.sig filename```
 
 If your system reports *good signature* then validation was succesfull. In the event validation fails, further checks are required, or you wish to establish encrypted communications with me, then please reach out via [email](mailto:matthewsantos@ieee.org).
