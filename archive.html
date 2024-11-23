@@ -1,0 +1,16 @@
+---
+title: Archive
+layout: default
+bg: /assets/images/Misc/archive_bg.jpg
+---
+
+<div class="w3-content w3-container w3-padding-64" id="archive">
+  {% for post in site.posts %}
+	{% assign currDate = post.date | date: "%Y" %}
+	{% if currDate != date %}
+		<h2>{{ currDate }}</h2>
+		{% assign date = currDate %}
+	{% endif %}
+	{{ post.date | date: "%B %d" }} - <a href="{{ post.url | relative_url }}">{{ post.title }}</a><br>
+  {% endfor %}
+</div>
