@@ -37,7 +37,7 @@ jobs:
                 mkdir _includes/$OWNER
                 awk '{print $1}' repos | while read line ; do \
                 mkdir _includes/$line ; \
-                curl -o _includes/$line/README.md https://raw.githubusercontent.com/$line/refs/heads/main/README.md ; \
+                curl -o _includes/$line/README.md https://raw.githubusercontent.com/$line/refs/heads/main/documents/README.md ; \
                 done
             env:
                 GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
