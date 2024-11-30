@@ -142,11 +142,23 @@ img{
 .w3-right{float:right!important}
 /* Parallax Effect */
 .parallax{
-	background-attachment: fixed;
-	background-position: center;
-	background-repeat: no-repeat;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	transform: translateZ(0);
+	will-change: transform;
 	background-size: cover;
-	min-height: 400px;
+	background-position: center center;
+}
+.parallax-wrap {
+	clip: rect(0, auto, auto, 0);
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
 }
 @media only screen and (max-device-width: 1600px){
 	.parallax{background-attachment: scroll;min-height: 400px;}
