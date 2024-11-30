@@ -16,22 +16,17 @@ jobs:
             uses: actions/checkout@v4
           - name: Get Project List
             run: |
+                mkdir -p _data
                 gh repo list -L 200 --json \
                 name,description,createdAt,updatedAt,\
                 forkCount,stargazerCount,watchers,languages,\
                 primaryLanguage,repositoryTopics,isArchived,\
                 isFork,isPrivate,isTemplate \
-                $OWNER >> repoList.json
+                $OWNER > _data/repoData.json
             env:
                 GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
                 OWNER: ${{ github.repository_owner }}
-          - name: Convert to Yml
-            uses: mikefarah/yq@v4.44.3
-            with:
-                cmd: yq -Poy repoList.json >> _config.yml
-          # - name: Print Config
-            # run: cat _config.yml
-          - name: Get Project Readmes
+          - name: Get Project Files
             run: |
                 gh repo list -L 200 $OWNER > repos
                 mkdir _includes/$OWNER
@@ -42,6 +37,21 @@ jobs:
             env:
                 GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
                 OWNER: ${{ github.repository_owner }}
+          - name: Create Project Names
+            uses: mikefarah/yq@v4.44.3
+            with:
+                cmd: yq e -r '.[].name' _data/repoData.json > _data/repoList
+          - name: Create Individual Project Pages
+            run: |
+                mkdir -p projects
+                cat _data/repoList | while read line; do \
+                    echo "---" > projects/${line}.html; \
+                    echo "layout: project" >> projects/${line}.html; \
+                    echo "title: ${line}" >> projects/${line}.html; \
+                    echo "---" >> projects/${line}.html; \
+                    cat projects/${line}.html; \
+                done
+                ls projects
           - name: Setup Ruby
             uses: ruby/setup-ruby@v1
             with:

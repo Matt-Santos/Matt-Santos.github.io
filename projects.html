@@ -27,7 +27,7 @@ bg: /assets/images/Misc/background3.jpg
 	<hr style="border-top:5px solid #eee">
 	<h3 id="research">Research</h3>
 	<hr style="border-top:5px solid #eee">
-	{% for project in site.projects %}
+	{% for project in site.data.repoData %}
 		{% for topics in project.repositoryTopics %}
 			{% if topics.name contains "research" %}
 				{% include project_card.html data=project %}
@@ -39,7 +39,7 @@ bg: /assets/images/Misc/background3.jpg
 	<hr style="border-top:5px solid #eee">
 	<h3 id="electronics">Electronics</h3>
 	<hr style="border-top:5px solid #eee">
-	{% for project in site.projects %}
+	{% for project in site.data.repoData %}
 		{% for topics in project.repositoryTopics %}
 			{% if topics.name contains "electronics" %}
 				{% include project_card.html data=project %}
@@ -51,7 +51,7 @@ bg: /assets/images/Misc/background3.jpg
 	<hr style="border-top:5px solid #eee">
 	<h3 id="restoration">Restoration</h3>
 	<hr style="border-top:5px solid #eee">
-	{% for project in site.projects %}
+	{% for project in site.data.repoData %}
 		{% for topics in project.repositoryTopics %}
 			{% if topics.name contains "restoration" %}
 				{% include project_card.html data=project %}
@@ -63,7 +63,7 @@ bg: /assets/images/Misc/background3.jpg
 	<hr style="border-top:5px solid #eee">
 	<h3 id="programing">Programing</h3>
 	<hr style="border-top:5px solid #eee">
-	{% for project in site.projects %}
+	{% for project in site.data.repoData %}
 		{% for topics in project.repositoryTopics %}
 			{% if topics.name contains "programming" %}
 				{% include project_card.html data=project %}

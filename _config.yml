@@ -1,5 +1,4 @@
 # _config.yml
-
 title: "Matthew Santos"
 description: "Personal Website/Portfolio"
 repository: "Matt-Santos/matt-santos.github.io"
@@ -18,6 +17,3 @@ author:
  github: "https://github.com/matt-santos"
  linkedin: "https://linkedin.com/in/matthewjsantos"
  orcid: "https://orcid.org/0009-006-1653-3882"
-
-# Auto Generated Project Listing (Via Github Actions)
-projects:
