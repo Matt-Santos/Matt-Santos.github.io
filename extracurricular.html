@@ -20,34 +20,9 @@ bg: /assets/images/Misc/background3.jpg
 	</div>
 
 	<h3 id="robotics">Robotics</h3>
-		{% for image in site.static_files %}
-			{% if image.path contains "assets/images/extracurricular/robotics" %}
-				{% capture file_url %}{{ site.baseurl }}{{ image.path }}{% endcapture %}
-				{% include parallax_bg.html
-					image_url=file_url
-					image_height=400px
-				%}
-			{% endif %}
-		{% endfor %}
+		{% include gallery_image.html folder="assets/images/extracurricular/robotics" %}
 	<h3 id="volunteer">Volunteer Work</h3>
-		{% for image in site.static_files %}
-			{% if image.path contains "assets/images/extracurricular/volunteer" %}
-				{% capture file_url %}{{ site.baseurl }}{{ image.path }}{% endcapture %}
-				{% include parallax_bg.html
-					image_url=file_url
-					image_height=400px
-				%}
-			{% endif %}
-		{% endfor %}
+		{% include gallery_image.html folder="assets/images/extracurricular/volunteer" %}
 	<h3 id="recreation">Recreation</h3>
-		{% for image in site.static_files %}
-			{% if image.path contains "assets/images/extracurricular/recreation" %}
-				{% capture file_url %}{{ site.baseurl }}{{ image.path }}{% endcapture %}
-				{% include parallax_bg.html
-					image_url=file_url
-					image_height=400px
-				%}
-			{% endif %}
-		{% endfor %}
-	
+		{% include gallery_image.html folder="assets/images/extracurricular/recreation" %}
 </div>

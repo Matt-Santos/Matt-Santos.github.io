@@ -1,6 +1,6 @@
 ## Matt-Santos.github.io
 
-This personal website is built with Jekyll and hosted on GitHub Pages. It features a custom, responsive theme designed to be lightweight and fast, operating without JavaScript to enhance performance and maximize browser compatibility. To streamline content management, several pages are automatically updated through an efficient workflow action that helps reduce the time spent on manual updates and ensures the site stays current.
+This personal website is built with Jekyll and hosted on GitHub Pages. It features a custom, responsive theme designed to be lightweight and fast, operating with minimal JavaScript to enhance performance and maximize browser compatibility. To streamline content management, several pages are automatically updated through an efficient workflow action that helps reduce the time spent on manual updates and ensures the site stays current.
 
 ### Update/Review Checklist
 
