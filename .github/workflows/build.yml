@@ -48,6 +48,7 @@ jobs:
                     echo "---" > projects/${line}.html; \
                     echo "layout: project" >> projects/${line}.html; \
                     echo "title: ${line}" >> projects/${line}.html; \
+                    echo "bg: https://raw.githubusercontent.com/Matt-Santos/${line}/refs/heads/main/documents/images/banner.png" >> projects/${line}.html; \
                     echo "---" >> projects/${line}.html; \
                     cat projects/${line}.html; \
                 done

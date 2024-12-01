@@ -1,31 +1,19 @@
 ---
 layout: default
 ---
+<!-- Obtain Project Index [i] -->
+{% assign i = 0 %}
+{% for project in site.data.repoData %}
+	{% if project.name == page.title %}
+		{% break %}
+	{% else %}
+		{% assign i = i | plus:1 %}
+	{% endif %}
+{% endfor %}
 
-
-title: "Projectname"
-bg: /assets/images/Misc/background3.jpg
-
-name: "Projectname"
-description: "Project Description"
-createdAt: "CreatedAt"
-forkCount: "ForkCount"
-isArchived: "isArchived"
-isFork: "isFork"
-isPrivate: "isPrivate"
-isTemplate: "isTemplate"
-primaryLanguage: "Primary Language"
-stargazerCount: "Stargazers"
-updatedAt: "UpdatedAt"
-watchers: "Watchers"
-languages: "LanguagesList"
-repositoryTopics: "TopicsList"
-
-
-
-
-<div class="w3-stretch w3-container w3-padding-64">
-    <h2 class="w3-center">Project Name here?</h2>
+<div class="w3-container w3-padding-64">
+	<img src="https://raw.githubusercontent.com/Matt-Santos/{{ page.title }}/refs/heads/main/documents/images/logo.png" class="w3-center"></img>
+    <h2 class="w3-center">{{ site.data.repoData[i].description }}</h2>
 	<a class="w3-text-white" style="float:right;padding-right:10px" href="https://docs.google.com/viewer?url=https://github.com/Matt-Santos/LaTeX-Workshop/releases/latest/download/Matthew_Santos_CV.pdf">Data Sheet</a>
     <div class="w3-row w3-center w3-dark-grey w3-padding-16">
         <div class="w3-quarter w3-section">
@@ -42,40 +30,42 @@ repositoryTopics: "TopicsList"
         </div>
     </div>
 	
+	<!-- Overview Section -->
 	<div class="w3-content w3-container w3-padding-64" id="about">
 	  <div class="w3-row">
 		<div class="w3-col m6 w3-center w3-padding-large">
-		<figure>
-		  <img src="/assets/images/Misc/matthew.jpg" class="w3-round w3-image" width="433">
-		  <figcaption><b><i class="fa fa-user w3-margin-right"></i>Project Image</b></figcaption>
-		</figure>
-		<figure>
-		  <img src="/assets/images/Misc/matthew.jpg" class="w3-round w3-image" width="433">
-		  <figcaption><b><i class="fa fa-user w3-margin-right"></i>Project Logo</b></figcaption>
-		</figure>
+			<figure>
+			  <img src="https://raw.githubusercontent.com/Matt-Santos/{{ page.title }}/refs/heads/main/documents/images/frame.png" class="w3-round w3-image" width="433">
+			  <figcaption><b><i></i>{{ page.name }}</b></figcaption>
+			</figure>
 		</div>
 		<div class="w3-col m6 w3-padding-large">
-			<p>General Description Here
-			</p>
+			<!--FileList -->
+			<!-- 9x9 or 4x4 grid -->
 		</div>
 	  </div>
 	</div>
 
-
-	<h1>{{ page.name }}</h1>
-	<h1>{{ page.description }}</h1>
-	<h1>{{ page.createdAt }}</h1>
-	<h1>{{ page.forkCount }}</h1>
-	<h1>{{ page.isArchived }}</h1>
-	<h1>{{ page.isFork }}</h1>
-	<h1>{{ page.isPrivate }}</h1>
-	<h1>{{ page.isTemplate }}</h1>
-	<h1>{{ page.primaryLanguage }}</h1>
-	<h1>{{ page.stargazerCount }}</h1>
-	<h1>{{ page.updatedAt }}</h1>
-	<h1>{{ page.watchers }}</h1>
-
-	<h1>{{ page.languages }}</h1>
-	<h1>{{ page.repositoryTopics }}</h1>
+	<!-- Documents -->
+	
+	<!-- Gallery -->
+	{% capture galleryFolder %}"assets/images/projects/{{ page.title }}"{% endcapture %}
+	{% include gallery_image.html folder=galleryFolder %}
+	<!-- Releases -->
+	
+	<h1>{{ page.title }}</h1>
+	<h1>{{ site.data.repoData[i].description }}</h1>
+	<h1>{{ site.data.repoData[i].createdAt }}</h1>
+	<h1>{{ site.data.repoData[i].forkCount }}</h1>
+	<h1>{{ site.data.repoData[i].isArchived }}</h1>
+	<h1>{{ site.data.repoData[i].isFork }}</h1>
+	<h1>{{ site.data.repoData[i].isPrivate }}</h1>
+	<h1>{{ site.data.repoData[i].isTemplate }}</h1>
+	<h1>{{ site.data.repoData[i].primaryLanguage }}</h1>
+	<h1>{{ site.data.repoData[i].stargazerCount }}</h1>
+	<h1>{{ site.data.repoData[i].updatedAt }}</h1>
+	<h1>{{ site.data.repoData[i].watchers }}</h1>
+	<h1>{{ site.data.repoData[i].languages }}</h1>
+	<h1>{{ site.data.repoData[i].repositoryTopics }}</h1>
 
 </div>

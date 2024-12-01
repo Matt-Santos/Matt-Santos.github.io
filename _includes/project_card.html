@@ -16,8 +16,8 @@
 	{% assign status_color = "w3-green" %}
 {% endif %}
 
-<a href="https://Matt-Santos.github.io/{{ include.data.name }}/" style="text-decoration:none">
-	<div class="w3-card w3-content w3-container w3-padding w3-hover-shadow w3-hover-sand w3-round-xlarge " style="height:400px;position:relative;overflow:auto;scrollbar-width:none">
+<a href="https://Matt-Santos.github.io/projects/{{ include.data.name }}" style="text-decoration:none">
+	<div class="w3-card w3-content w3-container w3-padding w3-hover-shadow w3-hover-sand w3-round-xlarge " style="height:400px;position:relative;overflow:hidden">
 		<div class="w3-third">
 			<img src="https://raw.githubusercontent.com/Matt-Santos/{{ include.data.name }}/refs/heads/main/documents/images/project.png" class="w3-round-xlarge w3-image">
 			<div class="w3-quarter w3-center">
@@ -32,11 +32,12 @@
 				<!--Topics: {% for topics in include.data.repositoryTopics %}{{topics.name}}{% if forloop.last != true %},{% endif %}{% endfor %}-->
 			</div>
 		</div>
-		<div class="w3-twothird">
+		<div class="w3-twothird" style="padding-left:10px">
 			<h3>{{ include.data.name }}</h3>
-			<!-- Project README.md -->
-			{% capture readme_include %}{% include Matt-Santos/{{ include.data.name }}/README.md %}{% endcapture %}
-			{{ readme_include | markdownify %}}
+			<div style="overflow: hidden;display:-webkit-box;-webkit-line-clamp:11;-webkit-box-orient: vertical;">
+				{% capture readme_include %}{% include Matt-Santos/{{ include.data.name }}/README.md %}{% endcapture %}
+				{{ readme_include | markdownify %}}
+			</div>
 			<div class="w3-display-topright w3-round-xlarge {{ status_color }}" style="right:5px;top:8px">&nbsp;&nbsp; {{ status }} &nbsp;&nbsp;</div>
 		</div>
 	</div>
