@@ -35,7 +35,7 @@
 		<div class="w3-twothird" style="padding-left:10px">
 			<h3>{{ include.data.name }}</h3>
 			<div style="overflow: hidden;display:-webkit-box;-webkit-line-clamp:11;-webkit-box-orient: vertical;">
-				{% capture readme_include %}{% include Matt-Santos/{{ include.data.name }}/README.md %}{% endcapture %}
+				{% capture readme_include %}{% include {{ include.data.name }}/README.md %}{% endcapture %}
 				{{ readme_include | markdownify %}}
 			</div>
 			<div class="w3-display-topright w3-round-xlarge {{ status_color }}" style="right:5px;top:8px">&nbsp;&nbsp; {{ status }} &nbsp;&nbsp;</div>
