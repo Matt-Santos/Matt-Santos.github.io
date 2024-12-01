@@ -17,7 +17,7 @@
       {% assign filename = filenameparts | last | replace: file.extname,"" %}
 
       <a href="{{ file.path }}" title="{{ filename }}">
-        <img src="//images.weserv.nl/?url=Matt-Santos.github.io/{{ file.path }}&w=400&h=400&output=jpg&q=50&fit=cover" alt="{{ filename }}" />
+        <img src="//images.weserv.nl/?url=Matt-Santos.github.io{{ file.path }}&w=400&h=400&output=jpg&q=50&fit=cover" alt="{{ filename }}" />
         <span>{{ filename }}</span>
       </a>
     {% endif %}
