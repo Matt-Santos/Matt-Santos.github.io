@@ -11,9 +11,9 @@ layout: default
 	{% endif %}
 {% endfor %}
 
-<div class="w3-container w3-padding-64">
-	<img src="https://raw.githubusercontent.com/Matt-Santos/{{ page.title }}/refs/heads/main/documents/images/logo.png" class="w3-center"></img>
-    <h2 class="w3-center">{{ site.data.repoData[i].description }}</h2>
+<div class="w3-content w3-container w3-padding-64">
+	<img src="https://raw.githubusercontent.com/Matt-Santos/{{ page.title }}/refs/heads/main/documents/images/logo.png" style="width:360px;margin-left:auto;margin-right:auto;display:block;"></img>
+    <h4 class="w3-center">{{ site.data.repoData[i].description }}</h4>
 	<a class="w3-text-white" style="float:right;padding-right:10px" href="https://docs.google.com/viewer?url=https://github.com/Matt-Santos/LaTeX-Workshop/releases/latest/download/Matthew_Santos_CV.pdf">Data Sheet</a>
     <div class="w3-row w3-center w3-dark-grey w3-padding-16">
         <div class="w3-quarter w3-section">
@@ -35,8 +35,8 @@ layout: default
 	  <div class="w3-row">
 		<div class="w3-col m6 w3-center w3-padding-large">
 			<figure>
-			  <img src="https://raw.githubusercontent.com/Matt-Santos/{{ page.title }}/refs/heads/main/documents/images/frame.png" class="w3-round w3-image" width="433">
-			  <figcaption><b><i></i>{{ page.name }}</b></figcaption>
+			  <img src="https://raw.githubusercontent.com/Matt-Santos/{{ page.title }}/refs/heads/main/documents/images/project.png" class="w3-round w3-image" width="433">
+			  <figcaption><b><i></i>{{ page.title }}</b></figcaption>
 			</figure>
 		</div>
 		<div class="w3-col m6 w3-padding-large">
@@ -47,7 +47,8 @@ layout: default
 	</div>
 
 	<!-- Documents -->
-	
+	{% capture readme_include %}{% include Matt-Santos/{{ page.title }}/README.md %}{% endcapture %}
+	{{ readme_include | markdownify %}}
 	<!-- Gallery -->
 	{% capture galleryFolder %}"assets/images/projects/{{ page.title }}"{% endcapture %}
 	{% include gallery_image.html folder=galleryFolder %}
