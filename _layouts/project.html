@@ -35,7 +35,7 @@ layout: default
 	{% if site.data.repoFiles[i].releases contains "Datasheet.pdf" %}
 	<a class="w3-text-white" style="float:right;padding-right:10px" href="https://docs.google.com/viewer?url=https://github.com/Matt-Santos/{{ page.title }}/releases/latest/download/Datasheet.pdf">Data Sheet</a>
 	{% endif %}
-    <div id="overview" class="w3-row w3-center w3-dark-grey w3-padding-16">
+    <div class="w3-row w3-center w3-dark-grey w3-padding-16">
         <div class="w3-quarter w3-section">
             <a href="#overview"><span class="w3-xlarge fa-solid fa-circle-info"></span><br>Overview</a>
         </div>
@@ -50,15 +50,19 @@ layout: default
         </div>
     </div>
 	<!-- Overview Section -->
-	<h3 id="overview">Overview</h3>
-	<div class="w3-display-topright w3-round-xlarge {{ status_color }}" style="right:5px;top:8px">&nbsp;&nbsp; {{ status }} &nbsp;&nbsp;</div>
-	<div class="w3-content w3-container w3-padding-64">
+	<div id="overview" class="w3-content w3-container w3-padding-64">
 	  <div class="w3-row">
-		<div class="w3-col m6 w3-center w3-padding-large">
+		<div class="w3-text-white w3-col m6 w3-center w3-padding-large w3-round-xlarge" style="background-color:#1d232d">
 			<figure>
 				<figcaption><b><i></i>{{ page.title }}</b></figcaption>
 			  <img src="https://raw.githubusercontent.com/Matt-Santos/{{ page.title }}/refs/heads/main/documents/images/project.png" class="w3-round w3-image" width="433">
 			</figure>
+			<!-- MetaData -->
+			{% for topics in site.data.repoData[i].repositoryTopics %}
+				<div class="w3-round-xlarge w3-blue-grey" style="margin-top:5px;display:inline-block;padding-left:12px;padding-right:12px">{{ topics.name }}</div>
+				{% if forloop.last != true %},{% endif %}
+			{% endfor %}
+			<br>
 			<div class="w3-quarter w3-center">
 				<div class="fa-solid fa-star"><span> {{ site.data.repoData[i].stargazerCount }}</span></div><br>
 				<div class="fa-solid fa-eye"><span> {{ site.data.repoData[i].watchers.totalCount }}</span></div><br>
@@ -67,16 +71,10 @@ layout: default
 			<div class="w3-threequarter w3-center">
 				Updated: {{ site.data.repoData[i].updatedAt | date: "%Y-%m-%d %H:%M" }}<br>
 				Created: {{ site.data.repoData[i].createdAt | date: "%Y-%m-%d %H:%M" }}<br>
-				Main Language: {{ site.data.repoData[i].primaryLanguage.name }}
+				Status: <div class="w3-round-xlarge {{ status_color }}" style="display:inline;padding-left:12px;padding-right:12px">{{ status }}</div>
 			</div>
-			<!--Topics: {% for topics in include.data.repositoryTopics %}{{topics.name}}{% if forloop.last != true %},{% endif %}{% endfor %}-->
-			
 			<!-- Language Bar -->
-			<h5>{{ site.data.repoData[i].languages }}</h5>
-		
-			<!-- MetaData -->
-			<h5>{{ site.data.repoData[i].repositoryTopics }}</h5>
-			
+			{% include language_bar.html target=i %}
 		</div>
 		<div class="w3-col m6 w3-padding-large">
 			<!--FileList -->

@@ -1,0 +1,17 @@
+<div class="language-bar">
+	{% assign i = include.target %}
+	{% for lang in site.data.repoData[i].languages %}
+		{% assign lang_total = lang.size | plus: lang_total %}
+	{% endfor %}
+	{% for lang in site.data.repoData[i].languages %}
+		{% assign ratio = lang.size | times: 100.0 | divided_by: lang_total | round: 2 %}
+		{% assign color = site.data.languages[lang.node.name].color %}
+		<div class="language" style="width: {{ ratio }}%; background-color: {{ color }};" title="{{ lang.node.name }} ({{ ratio }}%)"></div>
+	{% endfor %}
+</div>
+<ul class="columns3_list w3-round-xlarge" style="background-color:#1d232d">
+	{% for lang in site.data.repoData[i].languages %}
+		{% assign color = site.data.languages[lang.node.name].color %}
+		<li style="color:{{ color }}">{{ lang.node.name }}</li>
+	{% endfor %}
+</ul>
