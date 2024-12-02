@@ -292,6 +292,7 @@ img{
 	.w3-col.l11{width:91.66666%}
 	.w3-col.l12{width:99.99999%}
 }
+.columns3_list{-webkit-column-count: 3;-moz-column-count: 3;-o-column-count: 3;column-count: 3;} 
 /* Cells */
 .w3-cell-row{display:table;width:100%}
 .w3-cell{display:table-cell}

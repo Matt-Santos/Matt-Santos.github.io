@@ -29,7 +29,6 @@
 				Updated: {{ include.data.updatedAt | date: "%Y-%m-%d %H:%M" }}<br>
 				Created: {{ include.data.createdAt | date: "%Y-%m-%d %H:%M" }}<br>
 				Main Language: {{ include.data.primaryLanguage.name }}
-				<!--Topics: {% for topics in include.data.repositoryTopics %}{{topics.name}}{% if forloop.last != true %},{% endif %}{% endfor %}-->
 			</div>
 		</div>
 		<div class="w3-twothird" style="padding-left:10px">
