@@ -29,9 +29,10 @@ layout: default
 {% endif %}
 
 <div class="w3-content w3-container w3-padding-64">
-	{% if <logo> %}
+	{% assign Logo_exists    = site.data.repoFiles[i].files | where: "path","documents/images/logo.png" | size %}
+	{% if Logo_exists > 0 %}
 		<img src="https://raw.githubusercontent.com/Matt-Santos/{{ page.title }}/refs/heads/main/documents/images/logo.png" style="width:360px;margin-left:auto;margin-right:auto;display:block;"></img>
-	{% elseif %}
+	{% else %}
 		<h1 class="w3-center">{{ page.title }}</h1>
 	{% endif %}
 	<h4 class="w3-center">{{ site.data.repoData[i].description }}</h4>
@@ -52,23 +53,28 @@ layout: default
 	{% if Release_exists > 0 %}
 		{% assign toc_count = toc_count | plus: 1 %}
 	{% endif %}
-	{% assign sec_width = 100.0 | divided_by: toc_count %}
+	{% case toc_count %}
+		{% when 1 %}{% assign sec_type = "w3-col" %}
+		{% when 2 %}{% assign sec_type = "w3-half" %}
+		{% when 3 %}{% assign sec_type = "w3-third" %}
+		{% when 4 %}{% assign sec_type = "w3-quarter" %}
+	{% endcase %}
     <div class="w3-row w3-center w3-dark-grey w3-padding-16">
-        <div class="w3-quarter w3-section" style="width:{{ sec_width }}%">
+        <div class="{{ sec_type }} w3-section">
             <a href="#overview"><span class="w3-xlarge fa-solid fa-circle-info"></span><br>Overview</a>
         </div>
 		{% if Docs_exists > 0 %}
-        <div class="w3-quarter w3-section" style="width:{{ sec_width }}%">
+        <div class="{{ sec_type }} w3-section">
             <a href="#documentation"><span class="w3-xlarge fa-solid fa-book"></span><br>Documentation</a>
         </div>
 		{% endif %}
 		{% if Gallery_exists > 0 %}
-        <div class="w3-quarter w3-section" style="width:{{ sec_width }}%">
+        <div class="{{ sec_type }} w3-section">
             <a href="#gallery"><span class="w3-xlarge fa-regular fa-images"></span><br>Gallery</a>
         </div>
 		{% endif %}
 		{% if Release_exists > 0 %}
-        <div class="w3-quarter w3-section" style="width:{{ sec_width }}%">
+        <div class="{{ sec_type }} w3-section">
             <a href="#source"><span class="w3-xlarge fa-regular fa-folder-open"></span><br>Source Files</a>
         </div>
 		{% endif %}
