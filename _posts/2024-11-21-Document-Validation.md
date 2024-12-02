@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Document Signning"
-bg: /assets/images/Misc/code_bg.jpg
+bg: /assets/images/Misc/post_bg.jpg
 ---
 
 ## Background

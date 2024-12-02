@@ -1,33 +1,15 @@
-<style>
-  .image-gallery-p {overflow: auto; margin-left: -1%!important;}
-  .image-gallery-p a {float: left; display: block; margin: 0 0 1% 1%; width: 49%; text-align: center; text-decoration: none!important;}
-  .image-gallery-p a span {display: block; text-overflow: ellipsis; overflow: hidden; white-space: nowrap; padding: 3px 0;}
-  .image-gallery-p a img {width: 100%; display: block;}
-</style>
 
-<!--
- File Filter List
-	 -schematic (png view)??
-	 -pcb file (https://github.com/yaqwsx/PcbDraw)
-	 -3d render of PCB (https://github.com/antmicro/gerber2blend)
-	 -Interactive Bill of Materials (https://github.com/openscopeproject/InteractiveHtmlBom)
-	 -KiCanvas of PCB (https://github.com/theacodes/kicanvas)
-	 -
--->
-{% assign i = [,,,] %}
-<div class="image-gallery-p">
+
+<!-- File Filter List (in Priority Order) -->
+{% assign i = ".stl,.kicad_sch,.kicad_pcb,.html,.png,.pdf" | split: ","%}
+
+
+
+
+<div class="">
+
 {% assign i = include.target %}
 {% for file in site.data.repoFiles[i].files %}
-  {% if file.path contains "documents/images/gallery" %}
-	{% assign filenameparts = file.path | split: "/" %}
-	{% assign extname = filenameparts | last | split: "." | last | prepend: "." %}
-	{% assign filename = filenameparts | last | replace: extname,"" %}
-    {% if extname == '.jpg' or extname == '.jpeg' or extname == '.JPG' or extname == '.JPEG' %}
-		<a href="https://raw.githubusercontent.com/Matt-Santos/{{ site.data.repoData[i].name }}/refs/heads/main/{{ file.path }}" title="{{ filename }}">
-			<img src="//images.weserv.nl/?url=raw.githubusercontent.com/Matt-Santos/{{ site.data.repoData[i].name }}/refs/heads/main/{{ file.path }}&w=400&h=400&output=jpg&q=50&fit=cover" alt="{{ filename }}" />
-			<span>{{ filename }}</span>
-		</a>
-	{% endif %}
-  {% endif %}
 {% endfor %}
+
 </div>

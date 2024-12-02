@@ -32,9 +32,9 @@ jobs:
                 cmd: yq e -r '.[].name' _data/repoData.json > _data/repoList
           - name: Get Integrated Project Files (README.md)
             run: |
-                cat _data/repoList | while read line; do \
-                mkdir -p _includes/$line; \
-                curl -o _includes/$line/README.md https://raw.githubusercontent.com/Matt-Santos/$line/refs/heads/main/documents/README.md ; \
+                cat _data/repoList | while read line; do
+                    mkdir -p _includes/$line
+                    curl -o _includes/$line/README.md https://raw.githubusercontent.com/Matt-Santos/$line/refs/heads/main/documents/README.md
                 done
             env:
                 GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -61,13 +61,14 @@ jobs:
           - name: Create Individual Project Pages
             run: |
                 mkdir -p projects
-                cat _data/repoList | while read line; do \
-                    echo "---" > projects/${line}.html; \
-                    echo "layout: project" >> projects/${line}.html; \
-                    echo "title: ${line}" >> projects/${line}.html; \
-                    echo "bg: https://raw.githubusercontent.com/Matt-Santos/${line}/refs/heads/main/documents/images/banner.png" >> projects/${line}.html; \
-                    echo "---" >> projects/${line}.html; \
-                    cat projects/${line}.html; \
+                cat _data/repoList | while read line; do
+                    echo "---" > projects/${line}.html
+                    echo "layout: project" >> projects/${line}.html
+                    echo "title: ${line}" >> projects/${line}.html
+                    echo "bg_label: ${line}" >> projects/ ${line}.html
+                    echo "bg: https://raw.githubusercontent.com/Matt-Santos/${line}/refs/heads/main/documents/images/banner.png" >> projects/${line}.html
+                    echo "---" >> projects/${line}.html
+                    cat projects/${line}.html
                 done
                 ls projects
           - name: Setup Ruby

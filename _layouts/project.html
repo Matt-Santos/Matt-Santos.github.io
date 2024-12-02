@@ -29,14 +29,15 @@ layout: default
 {% endif %}
 
 <div class="w3-content w3-container w3-padding-64">
-	<img src="https://raw.githubusercontent.com/Matt-Santos/{{ page.title }}/refs/heads/main/documents/images/logo.png" style="width:360px;margin-left:auto;margin-right:auto;display:block;"></img>
-	<h1 class="w3-center">{{ page.title }}</h1>
+	{% if <logo> %}
+		<img src="https://raw.githubusercontent.com/Matt-Santos/{{ page.title }}/refs/heads/main/documents/images/logo.png" style="width:360px;margin-left:auto;margin-right:auto;display:block;"></img>
+	{% elseif %}
+		<h1 class="w3-center">{{ page.title }}</h1>
+	{% endif %}
 	<h4 class="w3-center">{{ site.data.repoData[i].description }}</h4>
 	{% if site.data.repoFiles[i].releases contains "Datasheet.pdf" %}
-	<a class="w3-text-white" style="float:right;padding-right:10px" href="https://docs.google.com/viewer?url=https://github.com/Matt-Santos/{{ page.title }}/releases/latest/download/Datasheet.pdf">Data Sheet</a>
+		<a class="w3-text-white" style="float:right;padding-right:10px" href="https://docs.google.com/viewer?url=https://github.com/Matt-Santos/{{ page.title }}/releases/latest/download/Datasheet.pdf">Data Sheet</a>
 	{% endif %}
-	
-	
 	<!-- Table of Contents -->
 	{% assign Docs_exists    = site.data.repoFiles[i].files | where: "path","documents/README.md" | size %}
 	{% assign Gallery_exists = site.data.repoFiles[i].files | where: "path","documents/images/gallery" | size %}
@@ -66,7 +67,7 @@ layout: default
             <a href="#gallery"><span class="w3-xlarge fa-regular fa-images"></span><br>Gallery</a>
         </div>
 		{% endif %}
-		{% if site.data.repoFiles[i].releases.size != 0 %}
+		{% if Release_exists > 0 %}
         <div class="w3-quarter w3-section" style="width:{{ sec_width }}%">
             <a href="#source"><span class="w3-xlarge fa-regular fa-folder-open"></span><br>Source Files</a>
         </div>
