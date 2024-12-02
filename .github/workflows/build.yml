@@ -47,8 +47,11 @@ jobs:
                     echo "{\"name\": \"$line\"," >> _data/repoFiles.json
                     echo "\"files\": " >> _data/repoFiles.json
                     gh api --jq '[.tree[] | {path: .path}]' repos/Matt-Santos/$line/git/trees/main?recursive=true >> _data/repoFiles.json
-                    echo ",\"releases\": " >> _data/repoFiles.json
-                    gh release view --repo Matt-Santos/$line --json assets -q '[.assets[].name]' >> _data/repoFiles.json
+                    RELEASE_CHECK=$(gh release view --repo Matt-Santos/$line)
+                    if [ -n "$RELEASE_CHECK" ]; then
+                        echo ",\"releases\": " >> _data/repoFiles.json
+                        gh release view --repo Matt-Santos/$line --json assets -q '[.assets[].name]' >> _data/repoFiles.json
+                    fi
                     echo "}," >> _data/repoFiles.json
                 done
                 sed -i '$s/.$/]/' _data/repoFiles.json

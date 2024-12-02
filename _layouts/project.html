@@ -35,19 +35,42 @@ layout: default
 	{% if site.data.repoFiles[i].releases contains "Datasheet.pdf" %}
 	<a class="w3-text-white" style="float:right;padding-right:10px" href="https://docs.google.com/viewer?url=https://github.com/Matt-Santos/{{ page.title }}/releases/latest/download/Datasheet.pdf">Data Sheet</a>
 	{% endif %}
+	
+	
+	<!-- Table of Contents -->
+	{% assign Docs_exists    = site.data.repoFiles[i].files | where: "path","documents/README.md" | size %}
+	{% assign Gallery_exists = site.data.repoFiles[i].files | where: "path","documents/images/gallery" | size %}
+	{% assign Release_exists = site.data.repoFiles[i].releases.size %}
+	{% assign toc_count = 1 %}
+	{% if Docs_exists > 0 %}
+		{% assign toc_count = toc_count | plus: 1 %}
+	{% endif %}
+	{% if Gallery_exists > 0 %}
+		{% assign toc_count = toc_count | plus: 1 %}
+	{% endif %}
+	{% if Release_exists > 0 %}
+		{% assign toc_count = toc_count | plus: 1 %}
+	{% endif %}
+	{% assign sec_width = 100.0 | divided_by: toc_count %}
     <div class="w3-row w3-center w3-dark-grey w3-padding-16">
-        <div class="w3-quarter w3-section">
+        <div class="w3-quarter w3-section" style="width:{{ sec_width }}%">
             <a href="#overview"><span class="w3-xlarge fa-solid fa-circle-info"></span><br>Overview</a>
         </div>
-        <div class="w3-quarter w3-section">
+		{% if Docs_exists > 0 %}
+        <div class="w3-quarter w3-section" style="width:{{ sec_width }}%">
             <a href="#documentation"><span class="w3-xlarge fa-solid fa-book"></span><br>Documentation</a>
         </div>
-        <div class="w3-quarter w3-section">
+		{% endif %}
+		{% if Gallery_exists > 0 %}
+        <div class="w3-quarter w3-section" style="width:{{ sec_width }}%">
             <a href="#gallery"><span class="w3-xlarge fa-regular fa-images"></span><br>Gallery</a>
         </div>
-        <div class="w3-quarter w3-section">
+		{% endif %}
+		{% if site.data.repoFiles[i].releases.size != 0 %}
+        <div class="w3-quarter w3-section" style="width:{{ sec_width }}%">
             <a href="#source"><span class="w3-xlarge fa-regular fa-folder-open"></span><br>Source Files</a>
         </div>
+		{% endif %}
     </div>
 	<!-- Overview Section -->
 	<div id="overview" class="w3-content w3-container w3-padding-64">
@@ -83,18 +106,24 @@ layout: default
 	  </div>
 	</div>
 	<!-- Documents -->
-	<h3 id="documentation">Documentation</h3>
-	{% capture readme_include %}{% include {{ page.title }}/README.md %}{% endcapture %}
-	{{ readme_include | markdownify %}}
+	{% if Docs_exists > 0 %}
+		<h3 id="documentation">Documentation</h3>
+		{% capture readme_include %}{% include {{ page.title }}/README.md %}{% endcapture %}
+		{{ readme_include | markdownify %}}
+	{% endif %}
 	<!-- Gallery -->
-	<h3 id="gallery">Gallery</h3>
-	{% include gallery_project.html target=i %}
+	{% if Gallery_exists > 0 %}
+		<h3 id="gallery">Gallery</h3>
+		{% include gallery_project.html target=i %}
+	{% endif %}
 	<!-- Source Files List -->
-	<h3 id="source">Source Files</h3>
-	<ul class ="columns3_list">
-		{% for file in site.data.repoFiles[i].releases %}
-			<li><a href="https://github.com/Matt-Santos/{{ page.title }}/releases/download/latest/{{ file }}" >{{ file }}</a></li>
-		{% endfor %}
-	</ul>
+	{% if Release_exists > 0 %}
+		<h3 id="source">Source Files</h3>
+		<ul class ="columns3_list">
+			{% for file in site.data.repoFiles[i].releases %}
+				<li><a href="https://github.com/Matt-Santos/{{ page.title }}/releases/download/latest/{{ file }}" >{{ file }}</a></li>
+			{% endfor %}
+		</ul>
+	{% endif %}
 
 </div>
