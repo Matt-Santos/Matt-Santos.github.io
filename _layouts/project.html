@@ -29,12 +29,7 @@ layout: default
 {% endif %}
 
 <div class="w3-content w3-container w3-padding-64">
-	{% assign Logo_exists    = site.data.repoFiles[i].files | where: "path","documents/images/logo.png" | size %}
-	{% if Logo_exists > 0 %}
-		<img src="https://raw.githubusercontent.com/Matt-Santos/{{ page.title }}/refs/heads/main/documents/images/logo.png" style="width:360px;margin-left:auto;margin-right:auto;display:block;"></img>
-	{% else %}
-		<h1 class="w3-center">{{ page.title }}</h1>
-	{% endif %}
+	<h1 class="w3-center">{{ page.title }}</h1>
 	<h4 class="w3-center">{{ site.data.repoData[i].description }}</h4>
 	{% if site.data.repoFiles[i].releases contains "Datasheet.pdf" %}
 		<a class="w3-text-white" style="float:right;padding-right:10px" href="https://docs.google.com/viewer?url=https://github.com/Matt-Santos/{{ page.title }}/releases/latest/download/Datasheet.pdf">Data Sheet</a>
@@ -107,6 +102,11 @@ layout: default
 			{% include language_bar.html target=i %}
 		</div>
 		<div class="w3-col m6 w3-padding-large">
+			<!-- Logo -->
+			{% assign Logo_exists    = site.data.repoFiles[i].files | where: "path","documents/images/logo.png" | size %}
+			{% if Logo_exists > 0 %}
+				<img src="https://raw.githubusercontent.com/Matt-Santos/{{ page.title }}/refs/heads/main/documents/images/logo.png" class="w3-image"></img>
+			{% endif %}
 			<!--FileList -->
 			{% include gallery_project_files.html target=i %}
 		</div>
