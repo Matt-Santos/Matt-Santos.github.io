@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KiCad BOM Page Replacement</title>
+    <!-- You can add additional meta tags, CSS files, etc., here -->
+</head>
+<body>
+    <h1>Original Page Content</h1>
+    <p>This content will be replaced with the KiCad BOM page once the JavaScript runs.</p>
+
+    <!-- Button to trigger the page replacement -->
+    <button onclick="replacePageContent()">Load KiCad BOM</button>
+
+    <!-- JavaScript Code to Replace Page with KiCad BOM -->
+    <script>
+	// Function to replace the page content, execute scripts, and handle window.onload
+	async function replacePageContent() {
+	  try {
+		if (true) {
+		  // Fetch the replacement HTML content
+		  const response = await fetch("https://raw.githubusercontent.com/Matt-Santos/Matt-Santos.github.io/refs/heads/main/hardware/BOM_test.html"); // Replace with your server path
+		  if (!response.ok) throw new Error(`Failed to fetch: ${response.statusText}`);
+		  
+		  const newContent = await response.text();
+
+		  // Create a temporary DOM element to parse the fetched HTML
+		  const tempDiv = document.createElement("div");
+		  tempDiv.innerHTML = newContent;
+
+		  // Save the old onload handler (if any)
+		  const originalOnload = window.onload;
+
+		  // Prepare to extract the new onload handler
+		  let newOnload = null;
+
+		  // Extract and execute all <script> tags
+		  const scripts = tempDiv.querySelectorAll("script");
+		  for (const script of scripts) {
+			const newScript = document.createElement("script");
+			if (script.src) {
+			  // External script
+			  newScript.src = script.src;
+			  newScript.async = false; // Ensure execution order
+			} else {
+			  // Inline script
+			  newScript.textContent = script.textContent;
+
+			  // Check if the inline script assigns a new onload handler
+			  const onloadMatch = script.textContent.match(/window\.onload\s*=\s*function\s*\(\)\s*{([\s\S]*?)}/);
+			  if (onloadMatch && onloadMatch[1]) {
+				// Capture the function body
+				newOnload = new Function(onloadMatch[1].trim());
+			  }
+			}
+			document.body.appendChild(newScript);
+		  }
+
+		  // Replace the current document's content
+		  document.documentElement.innerHTML = tempDiv.innerHTML;
+
+		  // Restore or execute the new onload handler
+		  if (newOnload) {
+			window.onload = newOnload;
+		  } else if (originalOnload) {
+			window.onload = originalOnload;
+		  }
+
+		  // Explicitly trigger the onload event
+		  if (typeof window.onload === "function") {
+			window.onload();
+		  }
+		}
+	  } catch (error) {
+		console.error("Error replacing page content:", error);
+	  }
+	}
+    </script>
+</body>
+</html>

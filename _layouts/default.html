@@ -33,9 +33,9 @@
 	</div>
 	
 	<!-- Main Background -->
-	{% capture bg_label %}{{ page.title | upcase }}{% endcapture %}
-	{% capture bg_url %}{{ page.bg }}{% endcapture %}
-	{% capture bg_height %}{{ page.bg_height }}{% endcapture %}
+	{% capture bg_label %}{{ page.title | upcase }}{% endcapture -%}
+	{% capture bg_url %}{{ page.bg }}{% endcapture -%}
+	{% capture bg_height %}{{ page.bg_height }}{% endcapture -%}
 	{% include parallax_bg.html
 		image_label=bg_label
 		image_url=bg_url

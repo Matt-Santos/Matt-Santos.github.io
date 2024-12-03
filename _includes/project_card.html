@@ -1,20 +1,20 @@
 <!-- Determine Status -->
-{% if project.isPrivate == true %}
-	{% assign status = "PRIVATE" %}
-	{% assign status_color = "w3-red" %}
-{% elsif project.isArchived == true %}
-	{% assign status = "Completed" %}
-	{% assign status_color = "w3-green" %}
-{% elsif project.isTemplate == true %}
-	{% assign status = "Template" %}
-	{% assign status_color = "w3-blue" %}
-{% elsif project.isFork == true %}
-	{% assign status = "Forked" %}
-	{% assign status_color = "w3-cyan" %}
-{% else %}
-	{% assign status = "Active" %}
-	{% assign status_color = "w3-green" %}
-{% endif %}
+{% if project.isPrivate == true -%}
+	{% assign status = "PRIVATE" -%}
+	{% assign status_color = "w3-red" -%}
+{% elsif project.isArchived == true -%}
+	{% assign status = "Completed" -%}
+	{% assign status_color = "w3-green" -%}
+{% elsif project.isTemplate == true -%}
+	{% assign status = "Template" -%}
+	{% assign status_color = "w3-blue" -%}
+{% elsif project.isFork == true -%}
+	{% assign status = "Forked" -%}
+	{% assign status_color = "w3-cyan" -%}
+{% else -%}
+	{% assign status = "Active" -%}
+	{% assign status_color = "w3-green" -%}
+{% endif -%}
 
 <a href="https://Matt-Santos.github.io/projects/{{ include.data.name }}" style="text-decoration:none">
 	<div class="w3-card w3-content w3-container w3-padding w3-hover-shadow w3-hover-sand w3-round-xlarge " style="height:400px;position:relative;overflow:hidden">

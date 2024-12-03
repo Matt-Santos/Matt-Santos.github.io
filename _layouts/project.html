@@ -2,77 +2,77 @@
 layout: default
 ---
 <!-- Obtain Project Index [i] -->
-{% assign i = 0 %}
-{% for project in site.data.repoData %}
-	{% if project.name == page.title %}
-		{% break %}
-	{% else %}
-		{% assign i = i | plus:1 %}
-	{% endif %}
-{% endfor %}
+{% assign i = 0 -%}
+{% for project in site.data.repoData -%}
+	{% if project.name == page.title -%}
+		{% break -%}
+	{% else -%}
+		{% assign i = i | plus:1 -%}
+	{% endif -%}
+{% endfor -%}
 <!-- Determine Status -->
-{% if site.data.repoData[i].isPrivate == true %}
-	{% assign status = "PRIVATE" %}
-	{% assign status_color = "w3-red" %}
-{% elsif site.data.repoData[i].isArchived == true %}
-	{% assign status = "Completed" %}
-	{% assign status_color = "w3-green" %}
-{% elsif site.data.repoData[i].isTemplate == true %}
-	{% assign status = "Template" %}
-	{% assign status_color = "w3-blue" %}
-{% elsif site.data.repoData[i].isFork == true %}
-	{% assign status = "Forked" %}
-	{% assign status_color = "w3-cyan" %}
-{% else %}
-	{% assign status = "Active" %}
-	{% assign status_color = "w3-green" %}
-{% endif %}
+{% if site.data.repoData[i].isPrivate == true -%}
+	{% assign status = "PRIVATE" -%}
+	{% assign status_color = "w3-red" -%}
+{% elsif site.data.repoData[i].isArchived == true -%}
+	{% assign status = "Completed" -%}
+	{% assign status_color = "w3-green" -%}
+{% elsif site.data.repoData[i].isTemplate == true -%}
+	{% assign status = "Template" -%}
+	{% assign status_color = "w3-blue" -%}
+{% elsif site.data.repoData[i].isFork == true -%}
+	{% assign status = "Forked" -%}
+	{% assign status_color = "w3-cyan" -%}
+{% else -%}
+	{% assign status = "Active" -%}
+	{% assign status_color = "w3-green" -%}
+{% endif -%}
 
 <div class="w3-content w3-container w3-padding-64">
 	<h1 class="w3-center">{{ page.title }}</h1>
 	<h4 class="w3-center">{{ site.data.repoData[i].description }}</h4>
-	{% if site.data.repoFiles[i].releases contains "Datasheet.pdf" %}
+	{% if site.data.repoFiles[i].releases contains "Datasheet.pdf" -%}
 		<a class="w3-text-white" style="float:right;padding-right:10px" href="https://docs.google.com/viewer?url=https://github.com/Matt-Santos/{{ page.title }}/releases/latest/download/Datasheet.pdf">Data Sheet</a>
-	{% endif %}
+	{% endif -%}
 	<!-- Table of Contents -->
-	{% assign Docs_exists    = site.data.repoFiles[i].files | where: "path","documents/README.md" | size %}
-	{% assign Gallery_exists = site.data.repoFiles[i].files | where: "path","documents/images/gallery" | size %}
-	{% assign Release_exists = site.data.repoFiles[i].releases.size %}
-	{% assign toc_count = 1 %}
-	{% if Docs_exists > 0 %}
-		{% assign toc_count = toc_count | plus: 1 %}
-	{% endif %}
-	{% if Gallery_exists > 0 %}
-		{% assign toc_count = toc_count | plus: 1 %}
-	{% endif %}
-	{% if Release_exists > 0 %}
-		{% assign toc_count = toc_count | plus: 1 %}
-	{% endif %}
-	{% case toc_count %}
-		{% when 1 %}{% assign sec_type = "w3-col" %}
-		{% when 2 %}{% assign sec_type = "w3-half" %}
-		{% when 3 %}{% assign sec_type = "w3-third" %}
-		{% when 4 %}{% assign sec_type = "w3-quarter" %}
-	{% endcase %}
+	{% assign Docs_exists    = site.data.repoFiles[i].files | where: "path","documents/README.md" | size -%}
+	{% assign Gallery_exists = site.data.repoFiles[i].files | where: "path","documents/images/gallery" | size -%}
+	{% assign Release_exists = site.data.repoFiles[i].releases.size -%}
+	{% assign toc_count = 1 -%}
+	{% if Docs_exists > 0 -%}
+		{% assign toc_count = toc_count | plus: 1 -%}
+	{% endif -%}
+	{% if Gallery_exists > 0 -%}
+		{% assign toc_count = toc_count | plus: 1 -%}
+	{% endif -%}
+	{% if Release_exists > 0 -%}
+		{% assign toc_count = toc_count | plus: 1 -%}
+	{% endif -%}
+	{% case toc_count -%}
+		{% when 1 %}{% assign sec_type = "w3-col" -%}
+		{% when 2 %}{% assign sec_type = "w3-half" -%}
+		{% when 3 %}{% assign sec_type = "w3-third" -%}
+		{% when 4 %}{% assign sec_type = "w3-quarter" -%}
+	{% endcase -%}
     <div class="w3-row w3-center w3-dark-grey w3-padding-16">
         <div class="{{ sec_type }} w3-section">
             <a href="#overview"><span class="w3-xlarge fa-solid fa-circle-info"></span><br>Overview</a>
         </div>
-		{% if Docs_exists > 0 %}
+		{% if Docs_exists > 0 -%}
         <div class="{{ sec_type }} w3-section">
             <a href="#documentation"><span class="w3-xlarge fa-solid fa-book"></span><br>Documentation</a>
         </div>
-		{% endif %}
-		{% if Gallery_exists > 0 %}
+		{% endif -%}
+		{% if Gallery_exists > 0 -%}
         <div class="{{ sec_type }} w3-section">
             <a href="#gallery"><span class="w3-xlarge fa-regular fa-images"></span><br>Gallery</a>
         </div>
-		{% endif %}
-		{% if Release_exists > 0 %}
+		{% endif -%}
+		{% if Release_exists > 0 -%}
         <div class="{{ sec_type }} w3-section">
             <a href="#source"><span class="w3-xlarge fa-regular fa-folder-open"></span><br>Source Files</a>
         </div>
-		{% endif %}
+		{% endif -%}
     </div>
 	<!-- Overview Section -->
 	<div id="overview" class="w3-content w3-container w3-padding-64">
@@ -83,10 +83,10 @@ layout: default
 			  <img src="https://raw.githubusercontent.com/Matt-Santos/{{ page.title }}/refs/heads/main/documents/images/project.png" class="w3-round w3-image" width="433">
 			</figure>
 			<!-- MetaData -->
-			{% for topics in site.data.repoData[i].repositoryTopics %}
+			{% for topics in site.data.repoData[i].repositoryTopics -%}
 				<div class="w3-round-xlarge w3-blue-grey" style="margin-top:5px;display:inline-block;padding-left:12px;padding-right:12px">{{ topics.name }}</div>
-				{% if forloop.last != true %},{% endif %}
-			{% endfor %}
+				{% if forloop.last != true %},{% endif -%}
+			{% endfor -%}
 			<br>
 			<div class="w3-quarter w3-center">
 				<div class="fa-solid fa-star"><span> {{ site.data.repoData[i].stargazerCount }}</span></div><br>
@@ -99,38 +99,37 @@ layout: default
 				Status: <div class="w3-round-xlarge {{ status_color }}" style="display:inline;padding-left:12px;padding-right:12px">{{ status }}</div>
 			</div>
 			<!-- Language Bar -->
-			{% include language_bar.html target=i %}
+			{% include language_bar.html target=i -%}
 		</div>
 		<div class="w3-col m6 w3-padding-large">
 			<!-- Logo -->
-			{% assign Logo_exists    = site.data.repoFiles[i].files | where: "path","documents/images/logo.png" | size %}
-			{% if Logo_exists > 0 %}
+			{% assign Logo_exists    = site.data.repoFiles[i].files | where: "path","documents/images/logo.png" | size -%}
+			{% if Logo_exists > 0 -%}
 				<img src="https://raw.githubusercontent.com/Matt-Santos/{{ page.title }}/refs/heads/main/documents/images/logo.png" class="w3-image"></img>
 			{% endif %}
 			<!--FileList -->
-			{% include gallery_project_files.html target=i %}
+			{% include gallery_project_files.html target=i -%}
 		</div>
 	  </div>
 	</div>
 	<!-- Documents -->
-	{% if Docs_exists > 0 %}
+	{% if Docs_exists > 0 -%}
 		<h3 id="documentation">Documentation</h3>
-		{% capture readme_include %}{% include {{ page.title }}/README.md %}{% endcapture %}
-		{{ readme_include | markdownify %}}
-	{% endif %}
+		{% capture readme_include %}{% include {{ page.title }}/README.md %}{% endcapture -%}
+		{{ readme_include | markdownify -%}}
+	{% endif -%}
 	<!-- Gallery -->
-	{% if Gallery_exists > 0 %}
+	{% if Gallery_exists > 0 -%}
 		<h3 id="gallery">Gallery</h3>
-		{% include gallery_project.html target=i %}
-	{% endif %}
+		{% include gallery_project.html target=i -%}
+	{% endif -%}
 	<!-- Source Files List -->
-	{% if Release_exists > 0 %}
+	{% if Release_exists > 0 -%}
 		<h3 id="source">Source Files</h3>
 		<ul class ="columns3_list">
-			{% for file in site.data.repoFiles[i].releases %}
+			{% for file in site.data.repoFiles[i].releases -%}
 				<li><a href="https://github.com/Matt-Santos/{{ page.title }}/releases/download/latest/{{ file }}" >{{ file }}</a></li>
-			{% endfor %}
+			{% endfor -%}
 		</ul>
-	{% endif %}
-
+	{% endif -%}
 </div>

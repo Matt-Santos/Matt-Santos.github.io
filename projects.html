@@ -27,48 +27,47 @@ bg: /assets/images/Misc/projects_bg.jpg
 	<hr style="border-top:5px solid #eee">
 	<h3 id="research">Research</h3>
 	<hr style="border-top:5px solid #eee">
-	{% for project in site.data.repoData %}
-		{% for topics in project.repositoryTopics %}
-			{% if topics.name contains "research" %}
+	{% for project in site.data.repoData -%}
+		{% for topics in project.repositoryTopics -%}
+			{% if topics.name contains "research" -%}
 				{% include project_card.html data=project %}
-			{% endif %}
-		{% endfor %}
-	{% endfor %}
+			{% endif -%}
+		{% endfor -%}
+	{% endfor -%}
 	
 	<!-- Electronics Projects -->
 	<hr style="border-top:5px solid #eee">
 	<h3 id="electronics">Electronics</h3>
 	<hr style="border-top:5px solid #eee">
-	{% for project in site.data.repoData %}
-		{% for topics in project.repositoryTopics %}
-			{% if topics.name contains "electronics" %}
+	{% for project in site.data.repoData -%}
+		{% for topics in project.repositoryTopics -%}
+			{% if topics.name contains "electronics" -%}
 				{% include project_card.html data=project %}
-			{% endif %}
-		{% endfor %}
-	{% endfor %}
+			{% endif -%}
+		{% endfor -%}
+	{% endfor -%}
 	
 	<!-- Restoration Projects -->
 	<hr style="border-top:5px solid #eee">
 	<h3 id="restoration">Restoration</h3>
 	<hr style="border-top:5px solid #eee">
-	{% for project in site.data.repoData %}
-		{% for topics in project.repositoryTopics %}
-			{% if topics.name contains "restoration" %}
+	{% for project in site.data.repoData -%}
+		{% for topics in project.repositoryTopics -%}
+			{% if topics.name contains "restoration" -%}
 				{% include project_card.html data=project %}
-			{% endif %}
-		{% endfor %}
-	{% endfor %}
+			{% endif -%}
+		{% endfor -%}
+	{% endfor -%}
 	
 	<!-- Programing Projects -->
 	<hr style="border-top:5px solid #eee">
 	<h3 id="programing">Programing</h3>
 	<hr style="border-top:5px solid #eee">
-	{% for project in site.data.repoData %}
-		{% for topics in project.repositoryTopics %}
-			{% if topics.name contains "programming" %}
+	{% for project in site.data.repoData -%}
+		{% for topics in project.repositoryTopics -%}
+			{% if topics.name contains "programming" -%}
 				{% include project_card.html data=project %}
-			{% endif %}
-		{% endfor %}
-	{% endfor %}
-	
+			{% endif -%}
+		{% endfor -%}
+	{% endfor -%}
 </div>

@@ -30,7 +30,7 @@ jobs:
             uses: mikefarah/yq@v4.44.3
             with:
                 cmd: yq e -r '.[].name' _data/repoData.json > _data/repoList
-          - name: Get Integrated Project Files (README.md)
+          - name: Get README.md Project Files
             run: |
                 cat _data/repoList | while read line; do
                     mkdir -p _includes/$line
