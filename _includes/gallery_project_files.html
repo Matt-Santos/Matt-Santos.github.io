@@ -8,7 +8,7 @@
 
 <div class="image-gallery-p">
 <!-- File Filter List (in Priority Order) -->
-{% assign file_targets = ".stl,.kicad_sch,.kicad_pcb,.html,.png,.pdf" | split: "," -%}
+{% assign file_targets = ".step,.kicad_sch,.kicad_pcb,.html,.png,.pdf" | split: "," -%}
 
 <!-- Primary Search Loop -->
 {% for target in file_targets -%}
@@ -17,45 +17,49 @@
 		{% assign extname = filenameparts | last | split: "." | last | prepend: "." -%}
 		{% assign filename = filenameparts | last | replace: extname,"" -%}
 		{% if extname == target and file.path contains "hardware/" -%}
-			<!-- Default Targets -->
-			{% capture href_target %}https://raw.githubusercontent.com/Matt-Santos/{{ site.data.repoData[i].name }}/refs/heads/main/{{ file.path }}{% endcapture -%}
+			<!-- Select Targets -->
+			{% capture href_target %}<a href="https://raw.githubusercontent.com/Matt-Santos/{{ site.data.repoData[i].name }}/refs/heads/main/{{ file.path }}" title="{{ filename }}">{% endcapture -%}
+			{% case target -%}
+				{% when ".step" -%}
+					{% capture href_target %}<a href="#">todo{% endcapture -%}
+					{% capture image_target %}<img src="/assets/images/Misc/file_type_step.jpg" />{% endcapture -%}
+				{% when ".kicad_sch" -%}
+					{% capture href_target %}<a href="#"><kicanvas-embed src="https://raw.githubusercontent.com/Matt-Santos/{{ site.data.repoData[i].name }}/refs/heads/main/{{ file.path }}" controls="basic"> </kicanvas-embed>{% endcapture -%}
+					{% capture image_target %}<img src="/assets/images/Misc/file_type_kicad_sch.jpg" />{% endcapture -%}
+				{% when ".kicad_pcb" -%}
+					{% capture href_target %}<a href="#"><kicanvas-embed src="https://raw.githubusercontent.com/Matt-Santos/{{ site.data.repoData[i].name }}/refs/heads/main/{{ file.path }}" controls="basic"> </kicanvas-embed>{% endcapture -%}
+					{% capture image_target %}<img src="/assets/images/Misc/file_type_kicad_pcb.jpg" />{% endcapture -%}
+				{% when ".html" -%}
+					{% capture href_target %}<a href="#" onclick="replacePageContent('https://raw.githubusercontent.com/Matt-Santos/{{ site.data.repoData[i].name }}/refs/heads/main/{{ file.path }}'); return false;" title="{{ filename }}">{% endcapture -%}
+					{% capture image_target %}<img src="/assets/images/Misc/file_type_html.jpg" />{% endcapture -%}
+				{% when ".pdf" -%}
+					{% capture href_target %}<a href="https://docs.google.com/viewer?url=https://raw.githubusercontent.com/Matt-Santos/{{ site.data.repoData[i].name }}/refs/heads/main/{{ file.path }}" title="{{ filename }}">{% endcapture -%}
+					{% capture image_target %}<img src="/assets/images/Misc/file_type_pdf.jpg" />{% endcapture -%}
+			{% endcase -%}
+			<!-- Fallback image Target -->
 			{% assign img_ref = file.path | replace: extname,".png" -%}
 			{% for file2 in site.data.repoFiles[i].files -%}
 				{% if file2.path contains img_ref -%}
-					{% capture image_src %}<img src="//images.weserv.nl/?url=raw.githubusercontent.com/Matt-Santos/{{ site.data.repoData[i].name }}/refs/heads/main/{{ file.path }}&w=400&h=400&output=jpg&q=50&fit=cover" alt="{{ filename }}" class="lightbox-image"/>{% endcapture -%}
+					{% capture image_target %}<img src="//images.weserv.nl/?url=raw.githubusercontent.com/Matt-Santos/{{ site.data.repoData[i].name }}/refs/heads/main/{{ file.path }}&w=400&h=400&output=jpg&q=50&fit=cover" alt="{{ filename }}" class="lightbox-image"/>{% endcapture -%}
 					{% break -%}
 				{% endif -%}
 			{% endfor -%}
-			
-
-			<!-- Special Cases -->
-			{% case target -%}
-				{% when ".stl" -%}
-					{% capture href_target %}todo{% endcapture -%}
-				{% when ".kicad_sch" -%}
-					{% capture href_target %}todo{% endcapture -%}
-				{% when ".kicad_pcb" -%}
-					{% capture href_target %}todo{% endcapture -%}
-				{% when ".html" -%}
-					{% capture href_target %}#" onclick="replacePageContent('{{ href_target }}'); return false;{% endcapture -%}
-				{% when ".pdf" -%}
-					{% capture href_target %}https://docs.google.com/viewer?url=https://raw.githubusercontent.com/Matt-Santos/{{ site.data.repoData[i].name }}/refs/heads/main/{{ file.path }}{% endcapture -%}
-			{% endcase -%}
-			
-			<!-- Create Entry -->
-			<a href="{{ href_target }}" title="{{ filename }}">
-				{{ image_src }}
-			{% if image_src == nil -%}
-				<img src="/assets/images/img_404.jpg" />
+			{% if image_target == nil -%}
+				{% capture image_target %}<img src="/assets/images/Misc/file_type_pdf.jpg" />{% endcapture -%}
 			{% endif -%}
+			
+			<!-- Create Reference Entry -->
+			{{ href_target }}
+				{{ image_target }}
 				<span>{{ filename }}{{ extname }}</span>
 			</a>
-			{% assign image_src = nil -%}
+			{% assign image_target = nil -%}
 		{% endif -%}
 	{% endfor -%}
 {% endfor -%}
 </div>
 
+<script type="module" src="/assets/js/kicanvas.js"></script>
 <script>
 async function replacePageContent(url) {
 	try {
