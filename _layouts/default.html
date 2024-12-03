@@ -7,6 +7,8 @@
 	<link rel="icon" type="image/x-icon" href="/assets/images/favicon.ico">
 	<link rel="stylesheet" href="/assets/css/style.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+	<!--<link rel="stylesheet" href="/assets/css/glightbox.css"/>
+	<script src="/assets/js/glightbox.min.js"></script>-->
 </head>
 	
 <body id="home">
@@ -54,32 +56,31 @@
 			<a href={{site.author.github}}><i class="fa-brands fa-github w3-hover-opacity"></i></a>
 		</div>
 	</footer>
-	
-	<script type="text/javascript" src="/assets/js/lightbox.js"></script>
+	<!--<script src="/assets/js/toggleNav.js"></script>-->
 	<script>
-	// Change style of navbar on scroll
-	window.onscroll = function() {myFunction()};
-	function myFunction() {
-		var navbar = document.getElementById("myNavbar");
-		if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
-			navbar.className = "w3-bar" + " w3-card" + " w3-animate-top" + " w3-dark-grey";
+			window.onscroll = function() {myFunction()};
+		function myFunction() {
+			var navbar = document.getElementById("myNavbar");
+			if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+				navbar.className = "w3-bar" + " w3-card" + " w3-animate-top" + " w3-dark-grey";
+			}
+			else {
+				navbar.className = navbar.className.replace(" w3-card w3-animate-top w3-dark-grey", "");
+			}
 		}
-		else {
-			navbar.className = navbar.className.replace(" w3-card w3-animate-top w3-dark-grey", "");
+
+		// Used to toggle the menu on small screens when clicking on the menu button
+		function toggleFunction() {
+			var x = document.getElementById("navDemo");
+			if (x.className.indexOf("w3-show") == -1) {
+				x.className += " w3-show";
+			}
+			else {
+				x.className = x.className.replace(" w3-show", "");
+			}
 		}
-	}
-	
-	// Used to toggle the menu on small screens when clicking on the menu button
-	function toggleFunction() {
-		var x = document.getElementById("navDemo");
-		if (x.className.indexOf("w3-show") == -1) {
-			x.className += " w3-show";
-		}
-		else {
-			x.className = x.className.replace(" w3-show", "");
-		}
-	}
 	</script>
-	<link rel="stylesheet" href="/assets/css/lightbox.css">
+	
+	
 </body>
 </html>
