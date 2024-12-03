@@ -6,6 +6,10 @@ function is_imagelink(url) {
     var p = /([a-z\-_0-9\/\:\.]*\.(jpg|jpeg|png|gif))/i;
     return (url.match(p)) ? true : false;
 }
+function is_KiCADlink(url) {
+    var p = /([a-z\-_0-9\/\:\.]*\.(kicad_sch|kicad_pcb|kicad_pro))/i;
+    return (url.match(p)) ? true : false;
+}
 function is_vimeolink(url,el) {
     var id = false;
     var xmlhttp = new XMLHttpRequest();
@@ -103,6 +107,14 @@ document.addEventListener("DOMContentLoaded", function() {
                 var name = split[0];
                 element.setAttribute('title',name);
             }
+			if(is_KiCADlink(url) && !element.classList.contains('no-lightbox')) {
+                element.classList.add('lightbox-image');
+                var href = element.getAttribute('href');
+                var filename = href.split('/').pop();
+                var split = filename.split(".");
+                var name = split[0];
+                element.setAttribute('title',name);
+            }
         }
     });
 
@@ -132,6 +144,18 @@ document.addEventListener("DOMContentLoaded", function() {
         element.addEventListener("click", function(event) {
             event.preventDefault();
             document.getElementById('lightbox').innerHTML = '<a id="close"></a><a id="next">&rsaquo;</a><a id="prev">&lsaquo;</a><div class="img" style="background: url(\''+this.getAttribute('href')+'\') center center / contain no-repeat;" title="'+this.getAttribute('title')+'" ><img src="'+this.getAttribute('href')+'" alt="'+this.getAttribute('title')+'" /></div><span>'+this.getAttribute('title')+'</span>';
+            document.getElementById('lightbox').style.display = 'block';
+
+            setGallery(this);
+        });
+    });
+	
+	//add the KiCAD lightbox on click
+    var elements = document.querySelectorAll('a.lightbox-image');
+    elements.forEach(element => {
+        element.addEventListener("click", function(event) {
+            event.preventDefault();
+            document.getElementById('lightbox').innerHTML = '<a id="close" class="kicad-close"></a><div class="kicad-frame"><kicanvas-embed src="'+this.getAttribute('href')+'" controls="basic"></kicanvas-embed></div><span>'+this.getAttribute('title')+'</span>';
             document.getElementById('lightbox').style.display = 'block';
 
             setGallery(this);
