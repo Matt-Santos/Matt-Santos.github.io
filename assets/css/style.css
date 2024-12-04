@@ -108,6 +108,10 @@ a:active,a:hover{
 figcaption,footer,header,main,menu,nav,section{
 	display:block;
 }
+iframe{
+	width: 90vw;
+	height: 90vh;
+}
 /* Images */
 figure{
 	margin:1em 40px;
