@@ -80,7 +80,7 @@ layout: default
 		<div class="w3-text-white w3-col m6 w3-center w3-padding-large w3-round-xlarge" style="background-color:#1d232d">
 			<figure>
 				<figcaption><b><i></i>{{ page.title }}</b></figcaption>
-			  <img src="https://raw.githubusercontent.com/Matt-Santos/{{ page.title }}/refs/heads/main/documents/images/project.png" alt="{{ page.title }}" class="w3-round w3-image" width="433">
+			  <img src="https://raw.githubusercontent.com/Matt-Santos/{{ page.title }}/refs/heads/main/documents/images/project.png" class="w3-round w3-image" width="433">
 			</figure>
 			<!-- MetaData -->
 			{% for topics in site.data.repoData[i].repositoryTopics -%}
@@ -89,9 +89,9 @@ layout: default
 			{% endfor -%}
 			<br>
 			<div class="w3-quarter w3-center">
-				<div class="fa-solid fa-star"> {{ site.data.repoData[i].stargazerCount }}</div><br>
-				<div class="fa-solid fa-eye"> {{ site.data.repoData[i].watchers.totalCount }}</div><br>
-				<div class="fa-solid fa-code-fork"> {{ site.data.repoData[i].forkCount }}</div>
+				<div class="fa-solid fa-star"><span> {{ site.data.repoData[i].stargazerCount }}</span></div><br>
+				<div class="fa-solid fa-eye"><span> {{ site.data.repoData[i].watchers.totalCount }}</span></div><br>
+				<div class="fa-solid fa-code-fork"><span> {{ site.data.repoData[i].forkCount }}</span></div>
 			</div>
 			<div class="w3-threequarter w3-center">
 				Updated: {{ site.data.repoData[i].updatedAt | date: "%Y-%m-%d %H:%M" }}<br>
@@ -105,7 +105,7 @@ layout: default
 			<!-- Logo -->
 			{% assign Logo_exists    = site.data.repoFiles[i].files | where: "path","documents/images/logo.png" | size -%}
 			{% if Logo_exists > 0 -%}
-				<img src="https://raw.githubusercontent.com/Matt-Santos/{{ page.title }}/refs/heads/main/documents/images/logo.png" alt="{{ page.title }}" class="w3-image"></img>
+				<img src="https://raw.githubusercontent.com/Matt-Santos/{{ page.title }}/refs/heads/main/documents/images/logo.png" class="w3-image"></img>
 			{% endif %}
 			<!--FileList -->
 			{% include gallery_project_files.html target=i -%}
