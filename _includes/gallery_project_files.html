@@ -21,11 +21,13 @@
 			{% capture href_target %}<a href="https://raw.githubusercontent.com/Matt-Santos/{{ site.data.repoData[i].name }}/refs/heads/main/{{ file.path }}" title="{{ filename }}">{% endcapture -%}
 			{% case target -%}
 				{% when ".step" -%}
-					{% capture href_target %}<a href="#">{% endcapture -%}
+					{% capture href_target %}<a href="#">todo{% endcapture -%}
 					{% capture image_target %}<img src="/assets/images/Misc/file_type_step.jpg" />{% endcapture -%}
 				{% when ".kicad_sch" -%}
+					{% capture href_target %}<a href="#"><kicanvas-embed src="https://raw.githubusercontent.com/Matt-Santos/{{ site.data.repoData[i].name }}/refs/heads/main/{{ file.path }}" controls="basic"> </kicanvas-embed>{% endcapture -%}
 					{% capture image_target %}<img src="/assets/images/Misc/file_type_kicad_sch.jpg" />{% endcapture -%}
 				{% when ".kicad_pcb" -%}
+					{% capture href_target %}<a href="#"><kicanvas-embed src="https://raw.githubusercontent.com/Matt-Santos/{{ site.data.repoData[i].name }}/refs/heads/main/{{ file.path }}" controls="basic"> </kicanvas-embed>{% endcapture -%}
 					{% capture image_target %}<img src="/assets/images/Misc/file_type_kicad_pcb.jpg" />{% endcapture -%}
 				{% when ".html" -%}
 					{% capture href_target %}<a href="#" onclick="replacePageContent('https://raw.githubusercontent.com/Matt-Santos/{{ site.data.repoData[i].name }}/refs/heads/main/{{ file.path }}'); return false;" title="{{ filename }}">{% endcapture -%}
