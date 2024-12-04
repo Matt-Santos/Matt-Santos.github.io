@@ -1,11 +1,11 @@
 {% assign i_height = include.image_height | default: "400px" -%}
-<div style="height:400px;height:{{ i_height }};position:relative">
+<div style="height:{{ i_height }};position:relative">
 	<div class="parallax-wrap">
-		<div class="parallax w3-display-container w3-opacity-min" style="background-image:url('{{ include.image_url }}');position:fixed"></div>
+		<div class="parallax w3-display-container w3-opacity-min" style="background-image:url('{{ include.image_url }}');position:fixed;{% if include.midpage == nil %}height:{{ i_height }}{% endif %}"></div>
 		{% if include.image_label -%}
 			{% assign mid_height = i_height | remove: "px" | remove: "vh" | remove: "%" | remove: "em" -%}
 			{% assign mid_height = mid_height | divided_by: 2 | append: i_height | remove: mid_height -%}
-			<div class="w3-display-middle" style="white-space:nowrap">
+			<div class="w3-display-middle" style="white-space:nowrap;top:{{ mid_height }}">
 				<span class="w3-center w3-padding-large w3-black w3-xlarge w3-wide w3-animate-opacity">{{ include.image_label }}</span>
 		</div>
 		{% endif -%}
