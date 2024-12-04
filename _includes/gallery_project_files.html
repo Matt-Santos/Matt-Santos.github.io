@@ -18,11 +18,11 @@
 					{% capture image_target %}<img src="/assets/images/Misc/file_type_step.jpg" alt="{{ filename }}" class="w3-image w3-round-xlarge"/>{% endcapture -%}
 					
 				{% when ".kicad_sch" -%}
-					{% capture href_target %}<a href="#kicanvas_sch{{ forloop.index }}" class="glightbox w3-col m6 w3-padding" data-width="100vh" data-height="auto" data-draggable="false" data-touchFollowAxis="false">{% endcapture -%}
+					{% capture href_target %}<a href="#kicanvas_sch{{ forloop.index }}" class="glightbox w3-col m6 w3-padding" data-width="200vh" data-height="auto" data-draggable="false" data-touchFollowAxis="false">{% endcapture -%}
 					{% capture image_target %}<img src="/assets/images/Misc/file_type_kicad_sch.jpg" alt="{{ filename }}" class="w3-image w3-round-xlarge"/>{% endcapture -%}
 					<kicanvas-embed id="kicanvas_sch{{ forloop.index }}" src="{{ fileurl }}" controls="basic" style="display: none;width:100%;height:100%"></kicanvas-embed>
 				{% when ".kicad_pcb" -%}
-					{% capture href_target %}<a href="#kicanvas_pcb{{ forloop.index }}" class="glightbox w3-col m6 w3-padding" data-width="100vh" data-height="auto" data-draggable="false" data-touchFollowAxis="false">{% endcapture -%}
+					{% capture href_target %}<a href="#kicanvas_pcb{{ forloop.index }}" class="glightbox w3-col m6 w3-padding" data-width="200vh" data-height="auto" data-draggable="false" data-touchFollowAxis="false">{% endcapture -%}
 					{% capture image_target %}<img src="/assets/images/Misc/file_type_kicad_pcb.jpg" alt="{{ filename }}" class="w3-image w3-round-xlarge"/>{% endcapture -%}
 					<kicanvas-embed id="kicanvas_pcb{{ forloop.index }}" src="{{ fileurl }}" controls="basic" style="display: none"></kicanvas-embed>
 				{% when ".html" -%}
