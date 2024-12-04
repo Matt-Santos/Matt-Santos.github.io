@@ -9,28 +9,35 @@
 		{% assign extname = filenameparts | last | split: "." | last | prepend: "." -%}
 		{% assign filename = filenameparts | last | replace: extname,"" -%}
 		{% if extname == target and file.path contains "hardware/" -%}
+		{% capture fileurl %}https://raw.githubusercontent.com/Matt-Santos/{{ site.data.repoData[i].name }}/refs/heads/main/{{ file.path }}{% endcapture -%}
 			<!-- Select Targets -->
-			{% capture href_target %}<a href="https://raw.githubusercontent.com/Matt-Santos/{{ site.data.repoData[i].name }}/refs/heads/main/{{ file.path }}" alt="{{ filename }}" class="glightbox w3-col m6 w3-padding">{% endcapture -%}
+			{% capture href_target %}<a href="{{ fileurl }}" alt="{{ filename }}" class="glightbox w3-col m6 w3-padding">{% endcapture -%}
 			{% case target -%}
 				{% when ".step" -%}
 					{% capture href_target %}<a href="#" class="glightbox w3-col m6 w3-padding">{% endcapture -%}
 					{% capture image_target %}<img src="/assets/images/Misc/file_type_step.jpg" alt="{{ filename }}" class="w3-image w3-round-xlarge"/>{% endcapture -%}
+					
 				{% when ".kicad_sch" -%}
+					{% capture href_target %}<a href="#kicanvas_sch{{ forloop.index }}" class="glightbox w3-col m6 w3-padding" data-width="100vh" data-height="auto" data-draggable="false" data-touchFollowAxis="false">{% endcapture -%}
 					{% capture image_target %}<img src="/assets/images/Misc/file_type_kicad_sch.jpg" alt="{{ filename }}" class="w3-image w3-round-xlarge"/>{% endcapture -%}
+					<kicanvas-embed id="kicanvas_sch{{ forloop.index }}" src="{{ fileurl }}" controls="basic" style="display: none"></kicanvas-embed>
 				{% when ".kicad_pcb" -%}
+					{% capture href_target %}<a href="#kicanvas_pcb{{ forloop.index }}" class="glightbox w3-col m6 w3-padding" data-width="100vh" data-height="auto" data-draggable="false" data-touchFollowAxis="false">{% endcapture -%}
 					{% capture image_target %}<img src="/assets/images/Misc/file_type_kicad_pcb.jpg" alt="{{ filename }}" class="w3-image w3-round-xlarge"/>{% endcapture -%}
+					<kicanvas-embed id="kicanvas_pcb{{ forloop.index }}" src="{{ fileurl }}" controls="basic" style="display: none"></kicanvas-embed>
 				{% when ".html" -%}
-					{% capture href_target %}<a href="#" onclick="replacePageContent('https://raw.githubusercontent.com/Matt-Santos/{{ site.data.repoData[i].name }}/refs/heads/main/{{ file.path }}'); return false;" alt="{{ filename }}" class="glightbox w3-col m6 w3-padding">{% endcapture -%}
+					{% capture href_target %}<a href="#" onclick="replacePageContent('{{ fileurl }}'); return false;" alt="{{ filename }}" class="w3-col m6 w3-padding">{% endcapture -%}
 					{% capture image_target %}<img src="/assets/images/Misc/file_type_html.jpg" alt="{{ filename }}" class="w3-image w3-round-xlarge"/>{% endcapture -%}
+				
 				{% when ".pdf" -%}
-					{% capture href_target %}<a href="https://docs.google.com/viewer?url=https://raw.githubusercontent.com/Matt-Santos/{{ site.data.repoData[i].name }}/refs/heads/main/{{ file.path }}" alt="{{ filename }}" class="glightbox w3-col m6 w3-padding">{% endcapture -%}
+					{% capture href_target %}<a href="https://docs.google.com/viewer?url={{ fileurl }}" alt="{{ filename }}" class="w3-col m6 w3-padding">{% endcapture -%}
 					{% capture image_target %}<img src="/assets/images/Misc/file_type_pdf.jpg" alt="{{ filename }}" class="w3-image w3-round-xlarge"/>{% endcapture -%}
 			{% endcase -%}
 			<!-- Fallback image Target -->
 			{% assign img_ref = file.path | replace: extname,".png" -%}
 			{% for file2 in site.data.repoFiles[i].files -%}
 				{% if file2.path contains img_ref -%}
-					{% capture image_target %}<img src="//images.weserv.nl/?url=raw.githubusercontent.com/Matt-Santos/{{ site.data.repoData[i].name }}/refs/heads/main/{{ file.path }}&w=400&h=400&output=jpg&q=50&fit=cover" alt="{{ filename }}" class="w3-image w3-round-xlarge"/>{% endcapture -%}
+					{% capture image_target %}<img src="//images.weserv.nl/?url={{ fileurl }}&w=400&h=400&output=jpg&q=50&fit=cover" alt="{{ filename }}" class="w3-image w3-round-xlarge"/>{% endcapture -%}
 					{% break -%}
 				{% endif -%}
 			{% endfor -%}
