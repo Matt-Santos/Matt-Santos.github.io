@@ -14,21 +14,21 @@
 			{% capture href_target %}<a href="{{ fileurl }}" alt="{{ filename }}" class="glightbox w3-col m6 w3-padding">{% endcapture -%}
 			{% case target -%}
 				{% when ".stl" -%}
-					{% capture href_target %}<a href="#stl_{{ forloop.index }}" class="glightbox w3-col m6 w3-padding" data-width="200vh" data-height="auto" data-draggable="false" data-touchFollowAxis="false">{% endcapture -%}
+					{% capture href_target %}<a href="#stl_{{ forloop.index }}" class="glightbox w3-col m6 w3-padding" data-width="100vw" data-height="auto" data-draggable="false" data-touchFollowAxis="false">{% endcapture -%}
 					{% capture image_target %}<img src="/assets/images/Misc/file_type_step.jpg" alt="{{ filename }}" class="w3-image w3-round-xlarge"/>{% endcapture -%}
 					<div id="stl_{{ forloop.index }}" class="w3-center" style="display: none"><script src="https://embed.github.com/view/3d/Matt-Santos/{{ site.data.repoData[i].name }}/main/{{ file.path }}"></script></div>
 				{% when ".kicad_sch" -%}
-					{% capture href_target %}<a href="#kicanvas_sch{{ forloop.index }}" class="glightbox w3-col m6 w3-padding" data-width="200vh" data-height="auto" data-draggable="false" data-touchFollowAxis="false">{% endcapture -%}
+					{% capture href_target %}<a href="#kicanvas_sch{{ forloop.index }}" class="glightbox w3-col m6 w3-padding" data-width="100vw" data-height="auto" data-draggable="false" data-touchFollowAxis="false">{% endcapture -%}
 					{% capture image_target %}<img src="/assets/images/Misc/file_type_kicad_sch.jpg" alt="{{ filename }}" class="w3-image w3-round-xlarge"/>{% endcapture -%}
 					<kicanvas-embed id="kicanvas_sch{{ forloop.index }}" src="{{ fileurl }}" controls="basic" style="display: none"></kicanvas-embed>
 				{% when ".kicad_pcb" -%}
-					{% capture href_target %}<a href="#kicanvas_pcb{{ forloop.index }}" class="glightbox w3-col m6 w3-padding" data-width="200vh" data-height="auto" data-draggable="false" data-touchFollowAxis="false">{% endcapture -%}
+					{% capture href_target %}<a href="#kicanvas_pcb{{ forloop.index }}" class="glightbox w3-col m6 w3-padding" data-width="100vw" data-height="auto" data-draggable="false" data-touchFollowAxis="false">{% endcapture -%}
 					{% capture image_target %}<img src="/assets/images/Misc/file_type_kicad_pcb.jpg" alt="{{ filename }}" class="w3-image w3-round-xlarge"/>{% endcapture -%}
 					<kicanvas-embed id="kicanvas_pcb{{ forloop.index }}" src="{{ fileurl }}" controls="basic" style="display: none"></kicanvas-embed>
 				{% when ".html" -%}
-					{% capture href_target %}<a href="#" onclick="replacePageContent('{{ fileurl }}'); return false;" alt="{{ filename }}" class="w3-col m6 w3-padding">{% endcapture -%}
+					{% capture href_target %}<a href="#BOM{{ forloop.index }}" onclick="populateIframe('{{ fileurl }}','BOM{{ forloop.index }}');" class="glightbox w3-col m6 w3-padding" data-width="100vw" data-height="auto" data-draggable="false" data-touchFollowAxis="false">{% endcapture -%}
 					{% capture image_target %}<img src="/assets/images/Misc/file_type_html.jpg" alt="{{ filename }}" class="w3-image w3-round-xlarge"/>{% endcapture -%}
-				
+					<div id="BOM{{ forloop.index }}" class="w3-center" style="display: none"></div>
 				{% when ".pdf" -%}
 					{% capture href_target %}<a href="https://docs.google.com/viewer?url={{ fileurl }}" alt="{{ filename }}" class="w3-col m6 w3-padding">{% endcapture -%}
 					{% capture image_target %}<img src="/assets/images/Misc/file_type_pdf.jpg" alt="{{ filename }}" class="w3-image w3-round-xlarge"/>{% endcapture -%}
@@ -58,44 +58,13 @@
 <script type="module" src="/assets/js/kicanvas.js"></script>
 
 <script>
-async function replacePageContent(url) {
-	try {
+	async function populateIframe(url,id) {
 		const response = await fetch(url);
-		if (!response.ok) throw new Error(`Failed to fetch: ${response.statusText}`);
 		const newContent = await response.text();
-		const tempDiv = document.createElement("div");
-		tempDiv.innerHTML = newContent;
-		const originalOnload = window.onload;
-		let newOnload = null;
-		const scripts = tempDiv.querySelectorAll("script");
-		for (const script of scripts) {
-			const newScript = document.createElement("script");
-			if (script.src) {
-				newScript.src = script.src;
-				newScript.async = false;
-			} 
-			else {
-				newScript.textContent = script.textContent;
-				const onloadMatch = script.textContent.match(/window\.onload\s*=\s*function\s*\(\)\s*{([\s\S]*?)}/);
-				if (onloadMatch && onloadMatch[1]) {
-					newOnload = new Function(onloadMatch[1].trim());
-				}
-			}
-			document.body.appendChild(newScript);
-		}
-		document.documentElement.innerHTML = tempDiv.innerHTML;
-		if (newOnload) {
-			window.onload = newOnload;
-		} 
-		else if (originalOnload) {
-			window.onload = originalOnload;
-		}
-		if (typeof window.onload === "function") {
-			window.onload();
-		}
+		const idmatches = document.querySelectorAll(`#${id}`);
+		const parentDiv = idmatches[idmatches.length - 1];
+		const iframe = document.createElement("iframe");
+			iframe.srcdoc = newContent;
+			parentDiv.appendChild(iframe);
 	}
-	catch (error) {
-		console.error("Error replacing page content:", error);
-	}
-}
 </script>

@@ -910,7 +910,7 @@ iframe.wait-autoplay {
   .glightbox-clean .gprev,
     .glightbox-clean .gnext,
     .glightbox-clean .gclose {
-    background-color: rgba(0, 0, 0, 0.32);
+    background-color: rgba(0, 0, 0, 0.9);
   }
   .glightbox-clean .gprev:hover,
 .glightbox-clean .gnext:hover,
