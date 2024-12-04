@@ -49,7 +49,15 @@
 {% endfor -%}
 </div>
 
-<!--<script type="module" src="/assets/js/kicanvas.js"></script> 
+
+<script type="module" src="/assets/js/kicanvas.js"></script>
+<script>
+	var lightbox = GLightbox();
+	var lightbox_kicanvas = GLightbox();
+</script>
+
+
+
 <script>
 async function replacePageContent(url) {
 	try {
@@ -91,4 +99,4 @@ async function replacePageContent(url) {
 		console.error("Error replacing page content:", error);
 	}
 }
-</script>-->
+</script>
