@@ -47,7 +47,7 @@ function addLine() {
             }
         }
         while (--tries);
-        console.log(tries);
+        //console.log(tries);
         if (doBreak && tries === 0) {
             break;
         }
