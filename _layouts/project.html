@@ -70,7 +70,7 @@ layout: default
 		{% endif -%}
 		{% if Release_exists > 0 -%}
         <div class="{{ sec_type }} w3-section">
-            <a href="#source"><span class="w3-xlarge fa-regular fa-folder-open"></span><br>Source Files</a>
+            <a href="#files"><span class="w3-xlarge fa-regular fa-folder-open"></span><br>Project Files</a>
         </div>
 		{% endif -%}
     </div>
@@ -125,7 +125,7 @@ layout: default
 	{% endif -%}
 	<!-- Source Files List -->
 	{% if Release_exists > 0 -%}
-		<h3 id="source">Source Files</h3>
+		<h3 id="files">Project Files</h3>
 		<ul class ="columns3_list">
 			{% for file in site.data.repoFiles[i].releases -%}
 				<li><a href="https://github.com/Matt-Santos/{{ page.title }}/releases/download/latest/{{ file }}" >{{ file }}</a></li>

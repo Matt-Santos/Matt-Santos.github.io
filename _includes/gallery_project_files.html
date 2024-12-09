@@ -2,14 +2,14 @@
 <!-- File Filter List (in Priority Order) -->
 {% assign file_targets = ".stl,.kicad_sch,.kicad_pcb,.html,.png,.pdf" | split: "," -%}
 
-<!-- Primary Search Loop -->
+<!-- Primary Search Loop (Repo Files) -->
 {% for target in file_targets -%}
 	{% for file in site.data.repoFiles[i].files -%}
 		{% assign filenameparts = file.path | split: "/" -%}
 		{% assign extname = filenameparts | last | split: "." | last | prepend: "." -%}
 		{% assign filename = filenameparts | last | replace: extname,"" -%}
 		{% if extname == target and file.path contains "hardware/" -%}
-		{% capture fileurl %}https://raw.githubusercontent.com/Matt-Santos/{{ site.data.repoData[i].name }}/refs/heads/main/{{ file.path }}{% endcapture -%}
+			{% capture fileurl %}https://raw.githubusercontent.com/Matt-Santos/{{ site.data.repoData[i].name }}/refs/heads/main/{{ file.path }}{% endcapture -%}
 			<!-- Select Targets -->
 			{% capture href_target %}<a href="{{ fileurl }}" alt="{{ filename }}" class="glightbox w3-col m6 w3-padding">{% endcapture -%}
 			{% case target -%}
@@ -44,7 +44,42 @@
 			{% if image_target == nil -%}
 				{% capture image_target %}<img src="/assets/images/Misc/file_type_pdf.jpg" alt="{{ filename }}" class="w3-image w3-round-xlarge"/>{% endcapture -%}
 			{% endif -%}
-			
+			<!-- Create Reference Entry -->
+			{{ href_target }}
+				{{ image_target }}
+				<span>{{ filename }}{{ extname }}</span>
+			</a>
+			{% assign image_target = nil -%}
+		{% endif -%}
+	{% endfor -%}
+{% endfor -%}
+<!-- Primary Search Loop (Repo Releases) -->
+{% for target in file_targets -%}
+	{% for file in site.data.repoFiles[i].releases -%}
+		{% assign filenameparts = file.path | split: "/" -%}
+		{% assign extname = filenameparts | last | split: "." | last | prepend: "." -%}
+		{% assign filename = filenameparts | last | replace: extname,"" -%}
+		{% if extname == target -%}
+			{% capture fileurl %}https://github.com/Matt-Santos/{{ site.data.repoData[i].name }}/releases/download/latest/{{ file.path }}{% endcapture -%}
+			<!-- Select Targets -->
+			{% capture href_target %}<a href="{{ fileurl }}" alt="{{ filename }}" class="glightbox w3-col m6 w3-padding">{% endcapture -%}
+			{% case target -%}
+				{% when ".html" -%}
+					{% capture href_target %}<a href="#BOM{{ forloop.index }}" onclick="populateIframe('{{ fileurl }}','BOM{{ forloop.index }}');" class="glightbox w3-col m6 w3-padding" data-width="100vw" data-height="auto" data-draggable="false" data-touchFollowAxis="false">{% endcapture -%}
+					{% capture image_target %}<img src="/assets/images/Misc/file_type_html.jpg" alt="{{ filename }}" class="w3-image w3-round-xlarge"/>{% endcapture -%}
+					<div id="BOM{{ forloop.index }}" class="w3-center" style="display: none"></div>
+			{% endcase -%}
+			<!-- Fallback image Target -->
+			{% assign img_ref = file.path | replace: extname,".png" -%}
+			{% for file2 in site.data.repoFiles[i].files -%}
+				{% if file2.path contains img_ref -%}
+					{% capture image_target %}<img src="//images.weserv.nl/?url={{ fileurl }}&w=400&h=400&output=jpg&q=50&fit=cover" alt="{{ filename }}" class="w3-image w3-round-xlarge"/>{% endcapture -%}
+					{% break -%}
+				{% endif -%}
+			{% endfor -%}
+			{% if image_target == nil -%}
+				{% capture image_target %}<img src="/assets/images/Misc/file_type_pdf.jpg" alt="{{ filename }}" class="w3-image w3-round-xlarge"/>{% endcapture -%}
+			{% endif -%}
 			<!-- Create Reference Entry -->
 			{{ href_target }}
 				{{ image_target }}

@@ -16,6 +16,7 @@
 	{% assign status_color = "w3-green" -%}
 {% endif -%}
 
+{% if status != "Template" and status != "Forked" -%}
 <a href="https://Matt-Santos.github.io/projects/{{ include.data.name }}" style="text-decoration:none">
 	<div class="w3-card w3-content w3-container w3-padding w3-hover-shadow w3-hover-sand w3-round-xlarge " style="height:400px;position:relative;overflow:hidden">
 		<div class="w3-third">
@@ -41,3 +42,4 @@
 		</div>
 	</div>
 </a>
+{% endif -%}
