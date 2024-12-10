@@ -6,26 +6,14 @@ This personal website is built with Jekyll and hosted on GitHub Pages, featuring
 
 This list summarizes the content included in this repository that may require periodic updating. It should be reviewed in its entirety whenever major updates are performed to ensure completeness.
 
-- [x] [Contact Details](https://github.com/Matt-Santos/Matt-Santos.github.io/blob/main/_config.yml)
-- [x] [CV/Resume](https://github.com/Matt-Santos/Matt-Santos.github.io/blob/main/index.html)
-	- [x] [Print Versions](https://github.com/Matt-Santos/LaTeX-Workshop)
-	- [x] [Linkedin](https://www.linkedin.com/in/matthewjsantos)
-	- [x] [ORCID](https://orcid.org/0009-0006-1653-3882)
-	- [x] [Courses](https://github.com/Matt-Santos/Matt-Santos.github.io/blob/main/courses.html)
-- [x] [Extracurriculars](https://github.com/Matt-Santos/Matt-Santos.github.io/blob/main/extracurricular.html)
-	- [x] [Galleries](https://github.com/Matt-Santos/Matt-Santos.github.io/tree/main/assets/images/extracurricular)
-- [x] [Private GPG Key](https://github.com/Matt-Santos/Matt-Santos.github.io/blob/main/assets/files/msantos_public_key.asc)
-- [x] [Project Listing](https://github.com/Matt-Santos/Matt-Santos.github.io/blob/main/projects.html)
-- [x] [Archives](https://github.com/Matt-Santos/Matt-Santos.github.io/blob/main/archive.html)
-
-## Future Improvements
-
-This list highlights current design issues and areas for improvement.
-
-- [ ] Fix schematic/pcb and 3d viewer compatibility with IOS devices
-- [ ] Automatically populate [index](https://github.com/Matt-Santos/Matt-Santos.github.io/blob/main/index.html) CV content (from LaTeX-Workshop?)
-- [ ] Improve responsiveness of [project_card](https://github.com/Matt-Santos/Matt-Santos.github.io/blob/main/_includes/project_card.html) include
-- [ ] Add a dark mode option (toggleable)
-- [ ] Add more [dated posts](https://github.com/Matt-Santos/Matt-Santos.github.io/tree/main/_posts) to the archive
-- [ ] Add teaching dossier page
-- [ ] Add a project logo for the website
+- [ ] [Contact Details](https://github.com/Matt-Santos/Matt-Santos.github.io/blob/main/_config.yml)
+- [ ] [CV/Resume](https://github.com/Matt-Santos/Matt-Santos.github.io/blob/main/index.html)
+	- [ ] [Print Versions](https://github.com/Matt-Santos/LaTeX-Workshop)
+	- [ ] [Linkedin](https://www.linkedin.com/in/matthewjsantos)
+	- [ ] [ORCID](https://orcid.org/0009-0006-1653-3882)
+	- [ ] [Courses](https://github.com/Matt-Santos/Matt-Santos.github.io/blob/main/courses.html)
+- [ ] [Extracurriculars](https://github.com/Matt-Santos/Matt-Santos.github.io/blob/main/extracurricular.html)
+	- [ ] [Galleries](https://github.com/Matt-Santos/Matt-Santos.github.io/tree/main/assets/images/extracurricular)
+- [ ] [Project Listing](https://github.com/Matt-Santos/Matt-Santos.github.io/blob/main/projects.html)
+- [ ] [Archives](https://github.com/Matt-Santos/Matt-Santos.github.io/blob/main/archive.html)
+- [ ] [Private GPG Key](https://github.com/Matt-Santos/Matt-Santos.github.io/blob/main/assets/files/msantos_public_key.asc)
