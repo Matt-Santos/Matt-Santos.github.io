@@ -506,3 +506,20 @@ canvas{
   margin-top: -60px;
   visibility: hidden;
 }
+/* Color Themes */
+.black-theme{
+	color: white;
+	background-color: black;
+}
+.red-theme{
+	color: white;
+	background-color: Brown;
+}
+.green-theme{
+	color: white;
+	background-color: DarkSlateGrey;
+}
+.blue-theme{
+	color: white;
+	background-color: #005897;
+}
