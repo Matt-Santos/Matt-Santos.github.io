@@ -105,7 +105,7 @@ layout: default
 			<!-- Logo -->
 			{% assign Logo_exists    = site.data.repoFiles[i].files | where: "path","documents/images/logo.png" | size -%}
 			{% if Logo_exists > 0 -%}
-				<img src="https://raw.githubusercontent.com/Matt-Santos/{{ page.title }}/refs/heads/main/documents/images/logo.png" alt="{{ page.title }}" class="w3-round-xlarge w3-image"></img>
+				<img src="https://raw.githubusercontent.com/Matt-Santos/{{ page.title }}/refs/heads/main/documents/images/logo.png" alt="{{ page.title }}" class="w3-image"></img>
 			{% endif %}
 			<!--FileList -->
 			{% include gallery_project_files.html target=i -%}

@@ -21,7 +21,6 @@
 			<a href="/projects" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-wrench"></i> PROJECTS</a>
 			<a href="/extracurricular" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-rocket"></i> EXTRACURRICULAR</a>
 			<a href="/index#contact" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-envelope"></i> CONTACT</a>
-			<a class="w3-bar-item w3-button w3-right" onclick="changeTheme()" href="javascript:void(0);"><i class="fa-solid fa-circle-half-stroke"></i></a>
 		</div>
 		<!-- Navbar on small screens -->
 		<div id="navDemo" class="w3-bar-block w3-dark-grey w3-hide w3-hide-large w3-hide-medium">
@@ -66,16 +65,6 @@
 			loop: true,
 			closeButton: true,
 		});
-		let themeIndex = 0;
-		const themes = ['default','black-theme','red-theme','green-theme','blue-theme'];
-		function changeTheme() {
-			var divs = document.querySelectorAll('body, .w3-content, .w3-col');	
-			for (var i = 0; i < divs.length; i++) {
-				divs[i].classList.remove(themes[themeIndex]);
-				divs[i].classList.add(themes[(themeIndex+1) % themes.length]);
-			}
-			themeIndex = (themeIndex + 1) % themes.length;
-		}
 	</script>
 </body>
 </html>
