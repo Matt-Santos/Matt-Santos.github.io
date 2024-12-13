@@ -128,6 +128,7 @@ canvas{
 	position:fixed;
 	z-index: -2;
 	opacity: 0.2;
+	pointer-events: none;
 }
 /* CSS Inherit BoxSize from Class Trick */
 *,*:before,*:after{box-sizing:inherit}
