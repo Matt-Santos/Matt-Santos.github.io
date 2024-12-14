@@ -7,7 +7,7 @@
 	{% assign filename = filenameparts | last | replace: extname,"" -%}
     {% if extname == '.jpg' or extname == '.jpeg' or extname == '.JPG' or extname == '.JPEG' -%}
 		<a href="https://raw.githubusercontent.com/Matt-Santos/{{ site.data.repoData[i].name }}/refs/heads/main/{{ file.path }}" class="glightbox w3-col m3 w3-padding">
-			<img src="//images.weserv.nl/?url=raw.githubusercontent.com/Matt-Santos/{{ site.data.repoData[i].name }}/refs/heads/main/{{ file.path }}&w=400&h=400&output=jpg&q=50&fit=cover" alt="{{ filename }}" class="w3-image w3-round-xlarge"/>
+			<img src="//images.weserv.nl/?url=raw.githubusercontent.com/Matt-Santos/{{ site.data.repoData[i].name }}/refs/heads/main/{{ file.path }}&w=400&h=400&output=jpg&q=50&fit=cover" loading="lazy" alt="{{ filename }}" class="w3-image w3-round-xlarge"/>
 			<span>{{ filename }}</span>
 		</a>
 	{% endif -%}

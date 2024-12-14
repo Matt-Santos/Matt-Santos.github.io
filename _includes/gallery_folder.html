@@ -8,7 +8,7 @@
       {% assign filenameparts = file.path | split: "/" -%}
       {% assign filename = filenameparts | last | replace: file.extname,"" -%}
       <a href="{{ file.path }}" class="glightbox w3-col m3 w3-padding">
-        <img src="//images.weserv.nl/?url=Matt-Santos.github.io{{ file.path }}&w=400&h=400&output=jpg&q=50&fit=cover" alt="{{ filename }}" class="w3-image w3-round-xlarge"/>
+        <img src="//images.weserv.nl/?url=Matt-Santos.github.io{{ file.path }}&w=400&h=400&output=jpg&q=50&fit=cover" loading="lazy" alt="{{ filename }}" class="w3-image w3-round-xlarge"/>
         <span>{{ filename }}</span>
       </a>
     {% endif -%}
