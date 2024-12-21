@@ -129,6 +129,10 @@ canvas{
 	z-index: -2;
 	opacity: 0.2;
 	pointer-events: none;
+	width:100vw;
+	height:100vh;
+	background-size: cover;
+	background-position: center center;
 }
 /* CSS Inherit BoxSize from Class Trick */
 *,*:before,*:after{box-sizing:inherit}
