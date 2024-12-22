@@ -16,10 +16,10 @@ bg: /assets/images/Misc/projects_bg.jpg
             <a href="#electronics"><span class="w3-xlarge fa fa-microchip"></span><br>Electronics</a>
         </div>
         <div class="w3-quarter w3-section">
-            <a href="#restoration"><span class="w3-xlarge fa fa-wrench"></span><br>Restoration</a>
-        </div>
-        <div class="w3-quarter w3-section">
             <a href="#programing"><span class="w3-xlarge fa fa-code"></span><br>Programing</a>
+        </div>
+		<div class="w3-quarter w3-section">
+            <a href="#misc"><span class="w3-xlarge fa fa-wrench"></span><br>Miscellaneous</a>
         </div>
     </div>
 
@@ -47,18 +47,6 @@ bg: /assets/images/Misc/projects_bg.jpg
 		{% endfor -%}
 	{% endfor -%}
 	
-	<!-- Restoration Projects -->
-	<hr style="border-top:5px solid #eee">
-	<h3 id="restoration">Restoration</h3>
-	<hr style="border-top:5px solid #eee">
-	{% for project in site.data.repoData -%}
-		{% for topics in project.repositoryTopics -%}
-			{% if topics.name contains "restoration" -%}
-				{% include project_card.html data=project %}
-			{% endif -%}
-		{% endfor -%}
-	{% endfor -%}
-	
 	<!-- Programing Projects -->
 	<hr style="border-top:5px solid #eee">
 	<h3 id="programing">Programing</h3>
@@ -66,6 +54,18 @@ bg: /assets/images/Misc/projects_bg.jpg
 	{% for project in site.data.repoData -%}
 		{% for topics in project.repositoryTopics -%}
 			{% if topics.name contains "programming" -%}
+				{% include project_card.html data=project %}
+			{% endif -%}
+		{% endfor -%}
+	{% endfor -%}
+	
+	<!-- Misc Projects -->
+	<hr style="border-top:5px solid #eee">
+	<h3 id="misc">Miscellaneous</h3>
+	<hr style="border-top:5px solid #eee">
+	{% for project in site.data.repoData -%}
+		{% for topics in project.repositoryTopics -%}
+			{% if topics.name contains "misc" -%}
 				{% include project_card.html data=project %}
 			{% endif -%}
 		{% endfor -%}
