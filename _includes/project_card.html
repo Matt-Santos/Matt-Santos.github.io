@@ -19,7 +19,7 @@
 {% if status != "Forked" -%}
 <div class="w3-card w3-content w3-container w3-padding w3-hover-shadow w3-hover-opacity w3-round-xlarge " style="height:400px;position:relative;overflow:hidden">
 	<a href="https://Matt-Santos.github.io/projects/{{ include.data.name }}" style="position:absolute;width:100%;height:100%;top:0;left:0;background:rgba(0,0,0,0)"></a>
-	<div class="w3-third">
+	<div class="w3-third w3-hide-small">
 		<img src="https://raw.githubusercontent.com/Matt-Santos/{{ include.data.name }}/refs/heads/main/documents/images/project.jpg" alt="{{ include.data.name }}" class="w3-round-xlarge w3-image">
 		<div class="w3-quarter w3-center">
 			<div class="fa-solid fa-star"> {{ include.data.stargazerCount }}</div><br>
