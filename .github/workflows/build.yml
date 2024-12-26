@@ -24,22 +24,35 @@ jobs:
                 isFork,isPrivate,isTemplate \
                 $OWNER > _data/repoData.json
             env:
-                GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+                GH_TOKEN: ${{ secrets.WEBSITEPAT }} # Limited PAT
                 OWNER: ${{ github.repository_owner }}
           - name: Extract Project Names (repoList)
             uses: mikefarah/yq@v4.44.3
             with:
                 cmd: yq e -r '.[].name' _data/repoData.json > _data/repoList
-          - name: Get README.md Project Files
+          - name: Get Project Documents Folder
             run: |
-                cat _data/repoList | while read line; do
-                    mkdir -p _includes/$line
-                    curl -o _includes/$line/README.md https://raw.githubusercontent.com/Matt-Santos/$line/refs/heads/main/documents/README.md
+                shopt -s extglob
+                mkdir -p assets/projects
+                cd assets/projects
+                cat ../../_data/repoList | while read line; do
+                    git clone --depth 1 https://$GH_TOKEN@github.com/$OWNER/$line.git
+                    cd $line
+                    git sparse-checkout init --cone
+                    git sparse-checkout set documents
+                    rm -rd $(ls | grep -v documents) .git*
+                    mkdir -p ../../../_includes/$line
+                    if [ -f documents/README.md ]; then
+                        mv documents/README.md ../../../_includes/$line/
+                    else
+                        echo "Description not available" > ../../../_includes/$line/README.md
+                    fi
+                    cd ..
                 done
             env:
-                GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+                GH_TOKEN: ${{ secrets.WEBSITEPAT }}
                 OWNER: ${{ github.repository_owner }}
-          - name: Get Project File List (repoFiles.json)
+          - name: Get Project File List (repoFiles.json) # Public Repos Only
             run: |
                 set +e
                 echo "[" > _data/repoFiles.json
@@ -66,9 +79,8 @@ jobs:
                     echo "layout: project" >> projects/${line}.html
                     echo "title: ${line}" >> projects/${line}.html
                     echo "bg_label: ${line}" >> projects/${line}.html
-                    echo "bg: https://raw.githubusercontent.com/Matt-Santos/${line}/refs/heads/main/documents/images/banner.jpg" >> projects/${line}.html
+                    echo "bg: /assets/projects/${line}/documents/images/banner.jpg" >> projects/${line}.html
                     echo "---" >> projects/${line}.html
-                    cat projects/${line}.html
                 done
                 ls projects
           - name: Setup Ruby
