@@ -40,7 +40,9 @@ jobs:
                     cd $line
                     git sparse-checkout init --cone
                     git sparse-checkout set documents
-                    rm -rd $(ls | grep -v documents) .git*
+                    find . -type f ! -path './documents*' -exec rm '{}' +
+                    rm -rd .git*
+                    ls -la
                     mkdir -p ../../../_includes/$line
                     if [ -f documents/README.md ]; then
                         mv documents/README.md ../../../_includes/$line/
