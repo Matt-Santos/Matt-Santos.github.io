@@ -15,34 +15,34 @@
 			{% case target -%}
 				{% when ".stl" -%}
 					{% capture href_target %}<a href="#stl_{{ forloop.index }}" class="glightbox w3-col m6 w3-padding" data-width="100vw" data-height="auto" data-draggable="false" data-touchFollowAxis="false">{% endcapture -%}
-					{% capture image_target %}<img src="/assets/images/Misc/file_type_step.jpg" alt="{{ filename }}" class="w3-image w3-round-xlarge"/>{% endcapture -%}
+					{% capture image_target %}<img src="/assets/images/Misc/file_type_step.jpg" alt="{{ filename }}" class="w3-image w3-round-xxlarge"/>{% endcapture -%}
 					<div id="stl_{{ forloop.index }}" class="w3-center" style="display: none"><script src="https://embed.github.com/view/3d/Matt-Santos/{{ site.data.repoData[i].name }}/main/{{ file.path }}"></script></div>
 				{% when ".kicad_sch" -%}
 					{% capture href_target %}<a href="#kicanvas_sch{{ forloop.index }}" class="glightbox w3-col m6 w3-padding" data-width="100vw" data-height="auto" data-draggable="false" data-touchFollowAxis="false">{% endcapture -%}
-					{% capture image_target %}<img src="/assets/images/Misc/file_type_kicad_sch.jpg" alt="{{ filename }}" class="w3-image w3-round-xlarge"/>{% endcapture -%}
+					{% capture image_target %}<img src="/assets/images/Misc/file_type_kicad_sch.jpg" alt="{{ filename }}" class="w3-image w3-round-xxlarge"/>{% endcapture -%}
 					<kicanvas-embed id="kicanvas_sch{{ forloop.index }}" src="{{ fileurl }}" controls="basic" style="display: none"></kicanvas-embed>
 				{% when ".kicad_pcb" -%}
 					{% capture href_target %}<a href="#kicanvas_pcb{{ forloop.index }}" class="glightbox w3-col m6 w3-padding" data-width="100vw" data-height="auto" data-draggable="false" data-touchFollowAxis="false">{% endcapture -%}
-					{% capture image_target %}<img src="/assets/images/Misc/file_type_kicad_pcb.jpg" alt="{{ filename }}" class="w3-image w3-round-xlarge"/>{% endcapture -%}
+					{% capture image_target %}<img src="/assets/images/Misc/file_type_kicad_pcb.jpg" alt="{{ filename }}" class="w3-image w3-round-xxlarge"/>{% endcapture -%}
 					<kicanvas-embed id="kicanvas_pcb{{ forloop.index }}" src="{{ fileurl }}" controls="basic" style="display: none"></kicanvas-embed>
 				{% when ".html" -%}
 					{% capture href_target %}<a href="#BOM{{ forloop.index }}" onclick="populateIframe('{{ fileurl }}','BOM{{ forloop.index }}');" class="glightbox w3-col m6 w3-padding" data-width="100vw" data-height="auto" data-draggable="false" data-touchFollowAxis="false">{% endcapture -%}
-					{% capture image_target %}<img src="/assets/images/Misc/file_type_html.jpg" alt="{{ filename }}" class="w3-image w3-round-xlarge"/>{% endcapture -%}
+					{% capture image_target %}<img src="/assets/images/Misc/file_type_html.jpg" alt="{{ filename }}" class="w3-image w3-round-xxlarge"/>{% endcapture -%}
 					<div id="BOM{{ forloop.index }}" class="w3-center" style="display: none"></div>
 				{% when ".pdf" -%}
 					{% capture href_target %}<a href="https://docs.google.com/viewer?url={{ fileurl }}" alt="{{ filename }}" class="w3-col m6 w3-padding">{% endcapture -%}
-					{% capture image_target %}<img src="/assets/images/Misc/file_type_pdf.jpg" alt="{{ filename }}" class="w3-image w3-round-xlarge"/>{% endcapture -%}
+					{% capture image_target %}<img src="/assets/images/Misc/file_type_pdf.jpg" alt="{{ filename }}" class="w3-image w3-round-xxlarge"/>{% endcapture -%}
 			{% endcase -%}
 			<!-- Fallback image Target -->
 			{% assign img_ref = file.path | replace: extname,".png" -%}
 			{% for file2 in site.data.repoFiles[i].files -%}
 				{% if file2.path contains img_ref -%}
-					{% capture image_target %}<img src="//images.weserv.nl/?url={{ fileurl }}&w=400&h=400&output=jpg&q=50&fit=cover" alt="{{ filename }}" class="w3-image w3-round-xlarge"/>{% endcapture -%}
+					{% capture image_target %}<img src="//images.weserv.nl/?url={{ fileurl }}&w=400&h=400&output=jpg&q=50&fit=cover" alt="{{ filename }}" class="w3-image w3-round-xxlarge"/>{% endcapture -%}
 					{% break -%}
 				{% endif -%}
 			{% endfor -%}
 			{% if image_target == nil -%}
-				{% capture image_target %}<img src="/assets/images/Misc/file_type_pdf.jpg" alt="{{ filename }}" class="w3-image w3-round-xlarge"/>{% endcapture -%}
+				{% capture image_target %}<img src="/assets/images/Misc/file_type_pdf.jpg" alt="{{ filename }}" class="w3-image w3-round-xxlarge"/>{% endcapture -%}
 			{% endif -%}
 			<!-- Create Reference Entry -->
 			{{ href_target }}
@@ -66,19 +66,19 @@
 			{% case target -%}
 				{% when ".html" -%}
 					{% capture href_target %}<a href="#BOM{{ forloop.index }}" onclick="populateIframe('{{ fileurl }}','BOM{{ forloop.index }}');" class="glightbox w3-col m6 w3-padding" data-width="100vw" data-height="auto" data-draggable="false" data-touchFollowAxis="false">{% endcapture -%}
-					{% capture image_target %}<img src="/assets/images/Misc/file_type_html.jpg" alt="{{ filename }}" class="w3-image w3-round-xlarge"/>{% endcapture -%}
+					{% capture image_target %}<img src="/assets/images/Misc/file_type_html.jpg" alt="{{ filename }}" class="w3-image w3-round-xxlarge"/>{% endcapture -%}
 					<div id="BOM{{ forloop.index }}" class="w3-center" style="display: none"></div>
 			{% endcase -%}
 			<!-- Fallback image Target -->
 			{% assign img_ref = file.path | replace: extname,".png" -%}
 			{% for file2 in site.data.repoFiles[i].files -%}
 				{% if file2.path contains img_ref -%}
-					{% capture image_target %}<img src="//images.weserv.nl/?url={{ fileurl }}&w=400&h=400&output=jpg&q=50&fit=cover" alt="{{ filename }}" class="w3-image w3-round-xlarge"/>{% endcapture -%}
+					{% capture image_target %}<img src="//images.weserv.nl/?url={{ fileurl }}&w=400&h=400&output=jpg&q=50&fit=cover" alt="{{ filename }}" class="w3-image w3-round-xxlarge"/>{% endcapture -%}
 					{% break -%}
 				{% endif -%}
 			{% endfor -%}
 			{% if image_target == nil -%}
-				{% capture image_target %}<img src="/assets/images/Misc/file_type_pdf.jpg" alt="{{ filename }}" class="w3-image w3-round-xlarge"/>{% endcapture -%}
+				{% capture image_target %}<img src="/assets/images/Misc/file_type_pdf.jpg" alt="{{ filename }}" class="w3-image w3-round-xxlarge"/>{% endcapture -%}
 			{% endif -%}
 			<!-- Create Reference Entry -->
 			{{ href_target }}

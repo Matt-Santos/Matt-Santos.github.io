@@ -42,7 +42,6 @@ jobs:
                     git sparse-checkout set documents
                     find . -type f ! -path './documents*' -exec rm '{}' +
                     rm -rd .git*
-                    ls -la
                     mkdir -p ../../../_includes/$line
                     if [ -f documents/README.md ]; then
                         mv documents/README.md ../../../_includes/$line/

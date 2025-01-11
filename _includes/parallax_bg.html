@@ -6,7 +6,7 @@
 			{% assign mid_height = i_height | remove: "px" | remove: "vh" | remove: "%" | remove: "em" -%}
 			{% assign mid_height = mid_height | divided_by: 2 | append: i_height | remove: mid_height -%}
 			<div class="w3-display-middle" style="white-space:nowrap;top:{{ mid_height }}">
-				<span class="w3-center w3-padding-large w3-black w3-xlarge w3-wide w3-animate-opacity">{{ include.image_label }}</span>
+				<span class="w3-center w3-padding-large w3-black w3-xlarge w3-wide w3-animate-opacity" style="white-space:wrap">{{ include.image_label }}</span>
 		</div>
 		{% endif -%}
 	</div>
