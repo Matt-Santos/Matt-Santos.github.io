@@ -32,7 +32,7 @@ Prior to checking signatures you need to acquire a copy of the owner's public ke
 
 My keyfile can be found in two places:
 - Hosted here: [https://matt-santos.github.io/assets/files/msantos_public_key.asc](https://matt-santos.github.io/assets/files/msantos_public_key.asc)
-- The MIT Public Keyserver: [pgp.mit.edu](https://pgp.mit.edu/pks/lookup?op=get&search=0x8CAD5AA683A8AC5E)
+- The OpenPGP Public Keyserver: [keys.openpgp.org](https://keys.openpgp.org/search?q=contact@msantos.ca)
 
 Importing a downloaded keyfile is done using gpg with the *--import* arguement.
 
