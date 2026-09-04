@@ -70,4 +70,4 @@ For detached signatures simply include the associated *.sig* in the command
 
 ```gpg2 --verify filename.sig filename```
 
-If your system reports *good signature* then validation was succesfull. In the event validation fails, further checks are required, or you wish to establish encrypted communications with me, then please reach out via [email](mailto:matthewsantos@ieee.org).
+If your system reports *good signature* then validation was succesfull. In the event validation fails, further checks are required, or you wish to establish encrypted communications with me, then please reach out via [email]({{site.author.email}}).
